@@ -22,11 +22,11 @@ public class ServletAjoutUtilisateurs extends HttpServlet {
     public ServletAjoutUtilisateurs() {
         super();
     }
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
-		rd.forward(request, response);
-	}
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+        rd.forward(request, response);
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pseudo;
@@ -57,7 +57,7 @@ public class ServletAjoutUtilisateurs extends HttpServlet {
             Utilisateurs users = usersManager.ajouter(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, true);
 //            request.setAttribute("utilisateurs", users);
         } catch (NumberFormatException e) {
-        	System.out.println(e);
+            System.out.println(e);
         }
         RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);

@@ -16,7 +16,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Home</title>
+    <title>Accueil</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -27,14 +27,10 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <!--             <a href="#"><img src="{{ asset('img/parkIcon.jpg') }}" style="width:50px;height: 50px"></a> -->
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">ENI-Enchere</a></li>
-                <!--                 <li><a href="#">About</a></li> -->
-                <!--                 <li><a href="{{ path('animalsList') }}">List</a></li> -->
-                <!--                 <li><a href="#">Contact</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
@@ -77,17 +73,15 @@
             </ul>
         </div>
 
-
-            <form action="<%=request.getContextPath() %>/categorie" method="get">
-                Select a Category:&nbsp;
-                <select name="category">
-                    <c:forEach items="${lstCategorie}" var="category">
-                        <option value="${category.no_categorie}">${category.libelle}</option>
-                    </c:forEach>
-                </select>
-                <br/><br/>
-                <input type="submit" value="Valider" />
-            </form>
+        <form action="<%=request.getContextPath() %>/categorie" method="init">
+            Select a Category:&nbsp;
+            <select name="category">
+                <c:forEach items="${lstCategorie}" var="category">
+                    <option value="${category.no_categorie}">${category.libelle}</option>
+                </c:forEach>
+            </select>
+            <br/><br/>
+        </form>
 
 
     </div>

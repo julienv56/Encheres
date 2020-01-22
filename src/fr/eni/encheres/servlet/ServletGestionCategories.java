@@ -3,7 +3,9 @@ package fr.eni.encheres.servlet;
 import fr.eni.encheres.bll.CategoriesManager;
 import fr.eni.encheres.bo.Categories;
 
+import javax.imageio.IIOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,7 @@ public class ServletGestionCategories extends HttpServlet {
         try {
             CategoriesManager categorieManager = new CategoriesManager();
             List<Categories> listeCategorie = null;
-
+            System.out.println("HELLO");
             listeCategorie = categorieManager.selectionnerToutesLesCategories();
 
             request.setAttribute("lstCategorie", listeCategorie);

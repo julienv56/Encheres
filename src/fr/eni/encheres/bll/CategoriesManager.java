@@ -9,6 +9,7 @@ public class CategoriesManager {
     private CategoriesDAO categorieDAO;
 
     public List<Categories> selectionnerToutesLesCategories() {
-        return categorieDAO.findAll();
+        System.out.println("HELLO CEST LE MANAGER");
+        return this.categorieDAO.findAll();
     }
 }

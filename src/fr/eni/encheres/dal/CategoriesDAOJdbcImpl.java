@@ -9,6 +9,7 @@ import java.util.List;
 public class CategoriesDAOJdbcImpl implements CategoriesDAO {
     private static final String SELECT_ALL = "SELECT no_categorie,libelle FROM CATEGORIES";
 
+    @Override
     public List<Categories> findAll() {
         List<Categories> lst = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {

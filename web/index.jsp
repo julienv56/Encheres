@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: moi
   Date: 21/01/2020
@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="ISO-8859-1">
@@ -75,6 +76,20 @@
                 <li><a href="#">Separated link</a></li>
             </ul>
         </div>
+
+
+            <form action="<%=request.getContextPath() %>/categorie" method="get">
+                Select a Category:&nbsp;
+                <select name="category">
+                    <c:forEach items="${lstCategorie}" var="category">
+                        <option value="${category.no_categorie}">${category.libelle}</option>
+                    </c:forEach>
+                </select>
+                <br/><br/>
+                <input type="submit" value="Valider" />
+            </form>
+
+
     </div>
 
 </div>

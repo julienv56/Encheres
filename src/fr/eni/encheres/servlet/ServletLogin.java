@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
@@ -30,8 +31,10 @@ public class ServletLogin extends HttpServlet {
             pseudo = request.getParameter("pseudo");
             mot_de_passe = request.getParameter("MotDePasse");
             UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = usersManager.checkLogIn(pseudo, mot_de_passe);
+            List<Utilisateurs> listeUtilisateur = null;
+            listeUtilisateur = usersManager.selectionnerTousUtilisateurs();
 
+            request.setAttribute("lstUtilisateur", listeUtilisateur);
         } catch (
                 NumberFormatException e) {
             e.getCause();

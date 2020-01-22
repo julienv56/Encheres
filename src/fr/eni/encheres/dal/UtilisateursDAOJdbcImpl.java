@@ -1,9 +1,10 @@
 package fr.eni.encheres.dal;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 
 class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
@@ -38,16 +39,30 @@ class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
-    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS";
+    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
-    public void getUsers(Utilisateurs users) {
-
+    @Override
+    public List<Utilisateurs> findAll() {
+        List<Utilisateurs> lst = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(GETUSERS, PreparedStatement.RETURN_GENERATED_KEYS);
-            pstmt.executeQuery();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            Statement stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery(GETUSERS);
+            Utilisateurs users = new Utilisateurs();
+            while (rs.next()) {
+                users = utilisateurBuilder(rs);
+                lst.add(users);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+
+        return lst;
+    }
+
+    private Utilisateurs utilisateurBuilder(ResultSet rs) throws SQLException {
+        Utilisateurs users = new Utilisateurs();
+        users.setPseudo(rs.getString("pseudo"));
+        users.setMot_de_passe(rs.getString("mot_de_passe"));
+        return users;
     }
 }

@@ -9,8 +9,8 @@ public class Utilisateurs {
     private String telephone;
     private String rue;
 
-    public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
-    }
+//    public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
+//    }
 
     public Utilisateurs() {
 

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rlecoint2018
-  Date: 22/01/2020
-  Time: 12:00
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,10 +12,10 @@
 </head>
 <body>
 <form class="form-group" action="<%=request.getContextPath()%>/login" method="post">
-    Identifiant:<input type="text" name="id"/><br/>
+    Pseudo:<input type="text" name="pseudo"/><br/>
     Mot de passe:<input type="password" name="MotDePasse"/><br/>
     <br/>
-    <input type="submit" value="Register"/>
+    <input type="submit" value="Se connecter"/>
 </form>
 </body>
 </html>

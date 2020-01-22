@@ -28,4 +28,19 @@ public class UtilisateursManager {
         this.utilisateursDAO.insert(users);
         return users;
     }
+
+    public Utilisateurs checkLogIn(String pseudo, String mot_de_passe) {
+        Utilisateurs users = new Utilisateurs();
+        this.utilisateursDAO.getUsers();
+        String true_pseudo = users.getPseudo();
+        String true_password = users.getMot_de_passe();
+        if (true_pseudo.equals(pseudo) && true_password.equals(mot_de_passe)) {
+            System.out.println("jesuisuntestoui");
+        } else {
+            System.out.println("jesuisuntestnon");
+        }
+        this.utilisateursDAO.getUsers(users);
+        return users;
+    }
+
 }

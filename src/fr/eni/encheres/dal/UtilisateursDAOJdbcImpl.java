@@ -38,4 +38,16 @@ class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
+    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS";
+
+    public void getUsers(Utilisateurs users) {
+
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(GETUSERS, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstmt.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

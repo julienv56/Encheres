@@ -9,6 +9,7 @@ import fr.eni.encheres.bo.Utilisateurs;
 class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 
+    //    private static final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
     private static final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 
     public void insert(Utilisateurs users) {
@@ -27,7 +28,7 @@ class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
             pstmt.setInt(10, users.getCredit());
             pstmt.setBoolean(11, users.isAdministrateur());
             pstmt.executeUpdate();
-            
+
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 users.setNo_utilisateur(rs.getInt(1));

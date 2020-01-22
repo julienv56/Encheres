@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-<form action="register" method="post">
+<form action="<%=request.getContextPath()%>/register" method="post">
     Pseudo:<input type="text" name="pseudo"/><br/>
     Nom:<input type="text" name="nom"/><br/>
     prenom:<input type="text" name="prenom"/><br/>

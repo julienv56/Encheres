@@ -12,6 +12,10 @@ public class Utilisateurs {
     public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
     }
 
+    public Utilisateurs() {
+
+    }
+
     public int getNo_utilisateur() {
         return no_utilisateur;
     }

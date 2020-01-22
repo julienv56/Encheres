@@ -12,8 +12,19 @@ public class UtilisateursManager {
     }
 
     public Utilisateurs ajouter(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
-
-        Utilisateurs users = new Utilisateurs(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur);
+        Utilisateurs users = null;
+        users = new Utilisateurs();
+        users.setPseudo(pseudo);
+        users.setNom(nom);
+        users.setPrenom(prenom);
+        users.setEmail(email);
+        users.setTelephone(telephone);
+        users.setRue(rue);
+        users.setCode_postal(code_postal);
+        users.setVille(ville);
+        users.setMot_de_passe(mot_de_passe);
+        users.setCredit(credit);
+        users.setAdministrateur(administrateur);
 
         this.utilisateursDAO.insert(users);
         return users;

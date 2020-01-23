@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ServletGestionCategories extends HttpServlet {
             throws ServletException, IOException {
         try {
             CategoriesManager categorieManager = new CategoriesManager();
-            List<Categories> listeCategorie = null;
+            List<Categories> listeCategorie = new ArrayList<>();
             System.out.println("HELLO");
             listeCategorie = categorieManager.selectionnerToutesLesCategories();
 

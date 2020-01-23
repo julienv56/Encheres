@@ -9,8 +9,6 @@ import javax.rmi.CORBA.Util;
 
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
-
-    //    private static final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
     private static final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
 
     public void insert(Utilisateurs users) {
@@ -39,16 +37,16 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
+    //private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
+    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
-    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
-
-    @Override
-    public Utilisateurs findAll() {
+    public Utilisateurs findAll(String pseudo, String mot_de_passe) {
         Utilisateurs users = new Utilisateurs();
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            Statement stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery(GETUSERS);
-//            Utilisateurs users = new Utilisateurs();
+            PreparedStatement pstmt = cnx.prepareStatement(GETUSERS);
+            pstmt.setString(1, pseudo);
+            pstmt.setString(2, mot_de_passe);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 users = utilisateurBuilder(rs);
             }

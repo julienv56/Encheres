@@ -5,5 +5,5 @@ import fr.eni.encheres.bo.Utilisateurs;
 public interface UtilisateursDAO {
     public void insert(Utilisateurs users);
 
-    Utilisateurs findAll();
+    Utilisateurs findAll(String pseudo, String mot_de_passe);
 }

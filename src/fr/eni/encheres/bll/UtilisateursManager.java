@@ -30,8 +30,7 @@ public class UtilisateursManager {
         return users;
     }
 
-    public Utilisateurs selectionnerTousLesUtilisateurs() {
-        return utilisateursDAO.findAll();
+    public Utilisateurs selectionnerTousLesUtilisateurs(String pseudo, String mdp) {
+        return utilisateursDAO.findAll(pseudo, mdp);
     }
-
 }

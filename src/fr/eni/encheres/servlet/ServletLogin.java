@@ -26,8 +26,12 @@ public class ServletLogin extends HttpServlet {
         try {
             UtilisateursManager usersManager = new UtilisateursManager();
             Utilisateurs users = new Utilisateurs();
-
-            users = usersManager.selectionnerTousLesUtilisateurs();
+            System.out.println(request.getParameter("pseudo"));
+            String pseudo = request.getParameter("pseudo");
+            String mdp = request.getParameter("MotDePasse");
+            System.out.println(pseudo);
+            System.out.println(mdp);
+            users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
             request.setAttribute("users", users);
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class ArticlesVendus {
 
 	//paramètres de classe
-	private String noArticle;
+	private int noArticle;
 	private String nomArticle;
 	private String description;
 	private LocalDate dateDebutEncheres;
@@ -15,15 +15,15 @@ public class ArticlesVendus {
 	private String etatVente;
 	
 	//liaisons
-	private Utilisateurs no_utilisateur;
-	private Categories no_categorie;
+	private Utilisateurs utilisateur;
+	private Categories categorie;
 	
 	public ArticlesVendus(){
 	}
 	
-	public ArticlesVendus(String noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente, Utilisateurs no_utilisateur,
-			Categories no_categorie) {
+	public ArticlesVendus(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, int miseAPrix, int prixVente, String etatVente, Utilisateurs utilisateur,
+			Categories categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -33,15 +33,15 @@ public class ArticlesVendus {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
-		this.no_utilisateur = no_utilisateur;
-		this.no_categorie = no_categorie;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
-	public String getNoArticle() {
+	public int getNoArticle() {
 		return noArticle;
 	}
 
-	public void setNoArticle(String noArticle) {
+	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
 
@@ -102,19 +102,19 @@ public class ArticlesVendus {
 	}
 
 	public Utilisateurs getNo_utilisateur() {
-		return no_utilisateur;
+		return utilisateur;
 	}
 
 	public void setNo_utilisateur(Utilisateurs no_utilisateur) {
-		this.no_utilisateur = no_utilisateur;
+		this.utilisateur = utilisateur;
 	}
 
 	public Categories getNo_categorie() {
-		return no_categorie;
+		return categorie;
 	}
 
 	public void setNo_categorie(Categories no_categorie) {
-		this.no_categorie = no_categorie;
+		this.categorie = categorie;
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class ArticlesVendus {
 		return "ArticlesVendus [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", no_utilisateur="
-				+ no_utilisateur + ", no_categorie=" + no_categorie + "]";
+				+ utilisateur + ", no_categorie=" + categorie + "]";
 	}
 
 	

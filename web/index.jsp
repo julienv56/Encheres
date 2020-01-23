@@ -38,9 +38,9 @@
 
                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>
                     Se Connecter
-<%--Gestion Affichage Statut connexion--%>
-<%--                    <c:if test="$(!connecte)">Se connecter</c:if>--%>
-<%--                    <c:if test="$(connecte)">Déconnexion</c:if>--%>
+                    <%--Gestion Affichage Statut connexion--%>
+                    <%--                    <c:if test="$(!connecte)">Se connecter</c:if>--%>
+                    <%--                    <c:if test="$(connecte)">Déconnexion</c:if>--%>
                 </a></li>
             </ul>
         </div>
@@ -71,14 +71,17 @@
                 </select>
             </div>
         </form>
-        <div class="card bg-light mb-3">
-            <div class="card-body">
-                <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff" />
-                <h5 class="card-title">Product title</h5>
-                <p class="card-text" style="width: 500px">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <p class="bloc_left_price">99.00 $</p>
+        <form action="<%=request.getContextPath() %>/listeArticles" method="get">
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff"/>
+                    <h5 class="card-title">Product title</h5>
+                    <p class="card-text" style="width: 500px">Some quick example text to build on the card title and
+                        make up the bulk of the card's content.</p>
+                    <p class="bloc_left_price">99.00 $</p>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>

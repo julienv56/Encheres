@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesDAOJdbcImpl implements CategoriesDAO {
-    private static final String SELECT_ALL = "SELECT no_categorie,libelle FROM CATEGORIES";
+        private static final String SELECT_ALL = "SELECT no_categorie,libelle FROM CATEGORIES";
 
     @Override
     public List<Categories> findAll() {

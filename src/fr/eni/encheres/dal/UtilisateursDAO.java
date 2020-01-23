@@ -7,6 +7,5 @@ import java.util.List;
 public interface UtilisateursDAO {
     public void insert(Utilisateurs users);
 
-    List<Utilisateurs> findAll();
-
+    public void findAll(Utilisateurs users);
 }

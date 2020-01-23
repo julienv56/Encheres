@@ -26,20 +26,15 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pseudo;
         String mot_de_passe;
-
         try {
             pseudo = request.getParameter("pseudo");
             mot_de_passe = request.getParameter("MotDePasse");
-            UtilisateursManager usersManager = new UtilisateursManager();
-            List<Utilisateurs> listeUtilisateur = null;
-            listeUtilisateur = usersManager.selectionnerTousUtilisateurs();
 
-            request.setAttribute("lstUtilisateur", listeUtilisateur);
-        } catch (
-                NumberFormatException e) {
-            e.getCause();
+            UtilisateursManager usersManager = new UtilisateursManager();
+            Utilisateurs users = usersManager.selectionnerTousUtilisateurs();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-        rd.forward(request, response);
     }
 }

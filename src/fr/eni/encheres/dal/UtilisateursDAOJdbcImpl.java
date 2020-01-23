@@ -1,10 +1,8 @@
 package fr.eni.encheres.dal;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 
 class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
@@ -41,28 +39,13 @@ class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
     private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
-    @Override
-    public List<Utilisateurs> findAll() {
-        List<Utilisateurs> lst = new ArrayList<>();
+    public void findAll(Utilisateurs users) {
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            Statement stmt = cnx.createStatement();
-            ResultSet rs = stmt.executeQuery(GETUSERS);
-            Utilisateurs users = new Utilisateurs();
-            while (rs.next()) {
-                users = utilisateurBuilder(rs);
-                lst.add(users);
-            }
+            PreparedStatement pstmt = cnx.prepareStatement(GETUSERS);
+            pstmt.setString(1, users.getPseudo());
+            pstmt.setString(2, users.getNom());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return lst;
-    }
-
-    private Utilisateurs utilisateurBuilder(ResultSet rs) throws SQLException {
-        Utilisateurs users = new Utilisateurs();
-        users.setPseudo(rs.getString("pseudo"));
-        users.setMot_de_passe(rs.getString("mot_de_passe"));
-        return users;
     }
 }

@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateursDAO;
@@ -10,7 +11,7 @@ public class UtilisateursManager {
     private UtilisateursDAO utilisateursDAO;
 
     public UtilisateursManager() {
-        utilisateursDAO = DAOFactory.getUtilisateursDAO();
+        this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
     }
 
     public Utilisateurs ajouter(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
@@ -31,8 +32,11 @@ public class UtilisateursManager {
         return users;
     }
 
-    public List<Utilisateurs> selectionnerTousUtilisateurs(){
-        return utilisateursDAO.findAll();
+    public Utilisateurs selectionnerTousUtilisateurs() {
+        Utilisateurs users = new Utilisateurs();
+        this.utilisateursDAO.findAll(users);
+
+        return users;
     }
 
 }

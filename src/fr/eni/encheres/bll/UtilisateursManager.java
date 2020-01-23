@@ -4,11 +4,14 @@ import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateursDAO;
+import fr.eni.encheres.dal.UtilisateursDAOJdbcImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UtilisateursManager {
-    private UtilisateursDAO utilisateursDAO;
+    private UtilisateursDAO utilisateursDAO = new UtilisateursDAOJdbcImpl();
+
 
     public UtilisateursManager() {
         this.utilisateursDAO = DAOFactory.getUtilisateursDAO();
@@ -32,11 +35,8 @@ public class UtilisateursManager {
         return users;
     }
 
-    public Utilisateurs selectionnerTousUtilisateurs() {
-        Utilisateurs users = new Utilisateurs();
-        this.utilisateursDAO.findAll(users);
-
-        return users;
+    public Utilisateurs users selectionnerTousUtilisateurs() throws SQLException {
+         return utilisateursDAO.findAll();
     }
 
 }

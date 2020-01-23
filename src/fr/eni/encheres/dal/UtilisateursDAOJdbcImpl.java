@@ -5,7 +5,7 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateurs;
 
-class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
+public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
 
     //    private static final String INSERT = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
@@ -37,15 +37,21 @@ class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
-    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
-    public void findAll(Utilisateurs users) {
-        try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(GETUSERS);
-            pstmt.setString(1, users.getPseudo());
-            pstmt.setString(2, users.getNom());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
+
+    public void findAll() throws SQLException {
+        Connection conn = ConnectionProvider.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(GETUSERS);
+        ResultSet rs = pstmt.executeQuery(GETUSERS);
+        while (rs.next()) {
+            String lastName = rs.getString("pseudo");
+            System.out.println(lastName + "\n");
         }
+
+//            pstmt.setString(1, users.getPseudo());
+//            pstmt.setString(2, users.getMot_de_passe());
+//        System.out.println(pstmt);
+
     }
 }

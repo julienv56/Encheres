@@ -74,15 +74,29 @@
         <form action="<%=request.getContextPath() %>/listeArticles" method="get">
 
             <c:forEach items="${lstArticles}" var="article">
-                <div class="card bg-light mb-3">
-                    <div class="card-body">
-                        <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff"/>
-                        <h5 class="card-title">${article.getNomArticle()}</h5>
-                        <p class="card-text" style="width: 500px">${article.getDescription()}</p>
-                        <p class="bloc_left_price">${article.getMiseAPrix()} points</p>
+
+
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <img class="card-img-top" src="https://dummyimage.com/200x200/55595c/fff"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="#" title="View Product">${article.getNomArticle()}</a>
+                                </h4>
+                                <p class="card-text">${article.getDescription()}</p>
+                                <p>${article.getUtilisateur().pseudo}</p>
+                                <div class="row">
+                                    <div class="col" style="width: 300px">
+                                        <p class="btn btn-danger btn-block">${article.getMiseAPrix()} points</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </c:forEach>
+                    </c:forEach>
         </form>
     </div>
 </div>

@@ -30,7 +30,6 @@ public class ServletGestionCategories extends HttpServlet {
         try {
             CategoriesManager categorieManager = new CategoriesManager();
             List<Categories> listeCategorie = new ArrayList<>();
-            System.out.println("HELLO");
             listeCategorie = categorieManager.selectionnerToutesLesCategories();
 
             request.setAttribute("lstCategorie", listeCategorie);

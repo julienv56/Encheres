@@ -35,8 +35,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
                     S'inscrire</a></li>
+
                 <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    Se connecter</a></li>
+                    Se Connecter
+<%--Gestion Affichage Statut connexion--%>
+<%--                    <c:if test="$(!connecte)">Se connecter</c:if>--%>
+<%--                    <c:if test="$(connecte)">Déconnexion</c:if>--%>
+                </a></li>
             </ul>
         </div>
     </div>
@@ -55,37 +60,26 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
         </form>
 
-        <div class="dropdown" style="padding-top: 5px; padding-left: 5px">
-            <label>Categorie</label>
-
-            <button class="btn btn-default dropdown-toggle" type="button"
-                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="true">
-                Selectionner <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </div>
-
-        <form action="<%=request.getContextPath() %>/categorie" method="init">
-            Select a Category:&nbsp;
-            <select name="category">
-                <c:forEach items="${lstCategorie}" var="category">
-                    <option value="${category.no_categorie}">${category.libelle}</option>
-                </c:forEach>
-            </select>
-            <br/><br/>
+        <form action="<%=request.getContextPath() %>/categorie" method="get">
+            <div class="form-group" style="width: 200px">
+                <label for="sel1">Categorie:</label>
+                <select class="form-control" id="categoryId" name="category">
+                    <option value="">Selectionner :</option>
+                    <c:forEach items="${lstCategorie}" var="category">
+                        <option value="${category.no_categorie}">${category.libelle}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </form>
-
-
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+                <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff" />
+                <h5 class="card-title">Product title</h5>
+                <p class="card-text" style="width: 500px">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="bloc_left_price">99.00 $</p>
+            </div>
+        </div>
     </div>
-
 </div>
 </body>
 </html>

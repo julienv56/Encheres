@@ -4,7 +4,6 @@ import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 
-import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,8 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
                                                          "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
                                                          "FROM ARTICLES_VENDUS a " +
                                                          "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
-                                                         "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie ";
-//                                                         "WHERE date_debut_encheres = GETDATE() ";
+                                                         "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
+                                                         "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23)";
 
     @Override
     public List<ArticlesVendus> listeArticleDuJour() {
@@ -29,13 +28,10 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             while (rs.next()) {
                     article = articleBuilder(rs);
                     listeArticle.add(article);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
-
         }
-        System.out.println(listeArticle);
         return listeArticle;
     }
 
@@ -50,15 +46,10 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
         article.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
         article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
         article.setMiseAPrix(rs.getInt("prix_initial"));
-        System.out.println(article);
         user.setNo_utilisateur(rs.getInt("a_no_utilisateur"));
-        System.out.println(user);
         user.setPseudo(rs.getString("pseudo"));
         categorie.setNo_categorie(rs.getInt("a_no_categorie"));
         categorie.setLibelle(rs.getString("c_libelle"));
-        article.setUtilisateur(user);
-        article.setCategorie(categorie);
-        System.out.println(article);
 
         return article;
     }

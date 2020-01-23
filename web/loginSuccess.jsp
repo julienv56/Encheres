@@ -34,16 +34,22 @@
     </div>
 </nav>
 <%
-    String userName = null;
+    //allow access only if session exists
+    String user = null;
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("index.jsp");
+    } else user = (String) session.getAttribute("user");
+    String sessionID = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("pseudo")) userName = cookie.getValue();
+            if (cookie.getName().equals("user")) user = cookie.getValue();
+            if (cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
         }
     }
-    if (userName == null) response.sendRedirect("login.jsp");
 %>
-<h3>Hi <%=userName %>, Login successful.</h3>
+<h3>Hi <%=user %>, Login successful. <br> Your Session ID=<%=sessionID %>
+</h3>
 <br>
 <form action="ServletLogout" method="post">
     <input type="submit" value="Logout">

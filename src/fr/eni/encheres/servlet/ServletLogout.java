@@ -2,10 +2,7 @@ package fr.eni.encheres.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/ServletLogout")
@@ -18,16 +15,22 @@ public class ServletLogout extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("pseudo")) {
+                if (cookie.getName().equals("JSESSIONID")) {
                     loginCookie = cookie;
+                    //System.out.println("JSESSIONID=" + cookie.getValue());
                     break;
                 }
             }
-        }
-        if (loginCookie != null) {
             loginCookie.setMaxAge(0);
             response.addCookie(loginCookie);
         }
-        response.sendRedirect("login.jsp");
+        //invalidate the session if exists
+        HttpSession session = request.getSession(false);
+        //System.out.println("User=" + session.getAttribute("user"));
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("index.jsp");
     }
+
 }

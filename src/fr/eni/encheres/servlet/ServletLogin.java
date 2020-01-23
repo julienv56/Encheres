@@ -7,10 +7,7 @@ import fr.eni.encheres.bo.Utilisateurs;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -33,13 +30,18 @@ public class ServletLogin extends HttpServlet {
         users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
         request.setAttribute("users", users);
         String bddPseudo = users.getPseudo();
+        String bddName = users.getPrenom();
         //System.out.println(bddPseudo);
         if (bddPseudo == null) {
             response.sendRedirect("loginFailed.jsp");
         } else {
+            //Session part
+            HttpSession session = request.getSession();
+            session.setAttribute("user", pseudo);
+            session.setMaxInactiveInterval(10 * 60); //setting session to expiry in 10 min
             //Cookie part
             Cookie loginCookie = new Cookie("pseudo", pseudo);
-            loginCookie.setMaxAge(5 * 60); //setting cookie to expiry in 30 min
+            loginCookie.setMaxAge(10 * 60); //setting cookie to expiry in 10 min
             response.addCookie(loginCookie);
             response.sendRedirect("loginSuccess.jsp");
         }

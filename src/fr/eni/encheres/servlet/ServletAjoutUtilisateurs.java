@@ -53,7 +53,7 @@ public class ServletAjoutUtilisateurs extends HttpServlet {
 
 
             UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = usersManager.ajouter(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe, credit, true);
+            Utilisateurs users = usersManager.ajouter(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe, credit, false);
 
         } catch (NumberFormatException ignored) {
         }

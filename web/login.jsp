@@ -39,5 +39,8 @@
     <br/>
     <input type="submit" value="Se connecter"/>
 </form>
+<form action="register.jsp.jsp">
+    <input type="submit" value="register"/>
+</form>
 </body>
 </html>

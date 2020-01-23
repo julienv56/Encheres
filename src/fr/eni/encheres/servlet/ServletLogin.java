@@ -32,17 +32,16 @@ public class ServletLogin extends HttpServlet {
         String mdp = request.getParameter("MotDePasse");
         users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
         request.setAttribute("users", users);
-        Utilisateurs usersBlank = new Utilisateurs();
         String bddPseudo = users.getPseudo();
         System.out.println(bddPseudo);
         if (bddPseudo == null) {
-            response.sendRedirect("LoginFailed.jsp");
+            response.sendRedirect("loginFailed.jsp");
         } else {
             //Cookie part
             Cookie loginCookie = new Cookie("pseudo", pseudo);
             loginCookie.setMaxAge(5 * 60); //setting cookie to expiry in 30 min
             response.addCookie(loginCookie);
-            response.sendRedirect("LoginSuccess.jsp");
+            response.sendRedirect("loginSuccess.jsp");
         }
     }
 }

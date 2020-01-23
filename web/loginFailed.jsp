@@ -33,7 +33,7 @@
         </div>
     </div>
 </nav>
-Wrong password or username<br>
-<a href="login.jsp">Login page</a>
+<h3>Wrong password or username</h3><br>
+<a type=href="login.jsp">Login page</a>
 </body>
 </html>

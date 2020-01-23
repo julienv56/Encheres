@@ -27,13 +27,13 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UtilisateursManager usersManager = new UtilisateursManager();
         Utilisateurs users = new Utilisateurs();
-        System.out.println(request.getParameter("pseudo"));
+        //System.out.println(request.getParameter("pseudo"));
         String pseudo = request.getParameter("pseudo");
         String mdp = request.getParameter("MotDePasse");
         users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
         request.setAttribute("users", users);
         String bddPseudo = users.getPseudo();
-        System.out.println(bddPseudo);
+        //System.out.println(bddPseudo);
         if (bddPseudo == null) {
             response.sendRedirect("loginFailed.jsp");
         } else {

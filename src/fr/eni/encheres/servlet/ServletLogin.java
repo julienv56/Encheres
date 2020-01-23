@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
@@ -24,17 +23,16 @@ public class ServletLogin extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pseudo;
-        String mot_de_passe;
         try {
-            pseudo = request.getParameter("pseudo");
-            mot_de_passe = request.getParameter("MotDePasse");
-
             UtilisateursManager usersManager = new UtilisateursManager();
-            usersManager.selectionnerTousUtilisateurs();
+            Utilisateurs users = new Utilisateurs();
 
+            users = usersManager.selectionnerTousLesUtilisateurs();
+            request.setAttribute("users", users);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+        rd.forward(request, response);
     }
 }

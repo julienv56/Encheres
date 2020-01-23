@@ -8,6 +8,7 @@ import java.util.List;
 
 public class CategoriesManager {
     private CategoriesDAO categorieDAO = new CategoriesDAOJdbcImpl();
+
     public List<Categories> selectionnerToutesLesCategories() {
         System.out.println("HELLO CEST LE MANAGER");
         System.out.println(this);

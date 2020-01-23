@@ -1,9 +1,11 @@
 package fr.eni.encheres.dal;
 
 import java.sql.*;
-import java.util.List;
 
+import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
+
+import javax.rmi.CORBA.Util;
 
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
@@ -40,18 +42,27 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
     private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
 
-    public void findAll() throws SQLException {
-        Connection conn = ConnectionProvider.getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(GETUSERS);
-        ResultSet rs = pstmt.executeQuery(GETUSERS);
-        while (rs.next()) {
-            String lastName = rs.getString("pseudo");
-            System.out.println(lastName + "\n");
+    @Override
+    public Utilisateurs findAll() {
+        Utilisateurs users = new Utilisateurs();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            Statement stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery(GETUSERS);
+//            Utilisateurs users = new Utilisateurs();
+            while (rs.next()) {
+                users = utilisateurBuilder(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-//            pstmt.setString(1, users.getPseudo());
-//            pstmt.setString(2, users.getMot_de_passe());
-//        System.out.println(pstmt);
-
+        return users;
     }
+
+    private Utilisateurs utilisateurBuilder(ResultSet rs) throws SQLException {
+        Utilisateurs users = new Utilisateurs();
+        users.setPseudo(rs.getString("pseudo"));
+        users.setMot_de_passe(rs.getString("mot_de_passe"));
+        return users;
+    }
+
 }

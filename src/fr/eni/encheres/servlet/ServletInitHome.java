@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlet;
 
+import fr.eni.encheres.bll.ArticlesVendusManager;
 import fr.eni.encheres.bll.CategoriesManager;
+import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Categories;
 
 import javax.imageio.IIOException;
@@ -17,11 +19,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/categorie")
-public class ServletGestionCategories extends HttpServlet {
+public class ServletInitHome extends HttpServlet {
 
     public static final long serialVersionUID = 1L;
 
-    public ServletGestionCategories() {
+    public ServletInitHome() {
         super();
     }
 
@@ -33,8 +35,18 @@ public class ServletGestionCategories extends HttpServlet {
             listeCategorie = categorieManager.selectionnerToutesLesCategories();
 
             request.setAttribute("lstCategorie", listeCategorie);
+
+
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        try{
+            ArticlesVendusManager articlesVendusManager = new ArticlesVendusManager();
+            List<ArticlesVendus> listeArticles;
+            listeArticles = articlesVendusManager.selectionnerTousLesArticles();
+            request.setAttribute("lstArticles", listeArticles);
+        }catch (Exception e){
+            e.getStackTrace();
         }
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);

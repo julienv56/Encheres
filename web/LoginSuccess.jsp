@@ -19,7 +19,7 @@
 %>
 <h3>Hi <%=userName %>, Login successful.</h3>
 <br>
-<form action="#" method="post">
+<form action="index.jsp" method="post">
     <input type="submit" value="Logout">
 </form>
 </body>

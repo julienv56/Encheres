@@ -1,5 +1,6 @@
 package fr.eni.encheres.servlet;
 
+import com.sun.beans.decoder.ValueObject;
 import fr.eni.encheres.bll.UtilisateursManager;
 import fr.eni.encheres.bo.Utilisateurs;
 
@@ -24,28 +25,24 @@ public class ServletLogin extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-
-            UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = new Utilisateurs();
-            System.out.println(request.getParameter("pseudo"));
-            String pseudo = request.getParameter("pseudo");
-            String mdp = request.getParameter("MotDePasse");
-            System.out.println(pseudo);
-            System.out.println(mdp);
-            users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
-            request.setAttribute("users", users);
-
+        UtilisateursManager usersManager = new UtilisateursManager();
+        Utilisateurs users = new Utilisateurs();
+        System.out.println(request.getParameter("pseudo"));
+        String pseudo = request.getParameter("pseudo");
+        String mdp = request.getParameter("MotDePasse");
+        users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
+        request.setAttribute("users", users);
+        Utilisateurs usersBlank = new Utilisateurs();
+        String bddPseudo = users.getPseudo();
+        System.out.println(bddPseudo);
+        if (bddPseudo == null) {
+            response.sendRedirect("LoginFailed.jsp");
+        } else {
             //Cookie part
             Cookie loginCookie = new Cookie("pseudo", pseudo);
-            loginCookie.setMaxAge(30 * 60); //setting cookie to expiry in 30 min
+            loginCookie.setMaxAge(5 * 60); //setting cookie to expiry in 30 min
             response.addCookie(loginCookie);
             response.sendRedirect("LoginSuccess.jsp");
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-        rd.forward(request, response);
     }
 }

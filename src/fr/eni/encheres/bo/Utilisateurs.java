@@ -12,21 +12,7 @@ public class Utilisateurs {
 //    public Utilisateurs(String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
 //    }
 
-    public Utilisateurs() {
-
-    }
-
-    public int getNo_utilisateur() {
-        return no_utilisateur;
-    }
-
-    public void setNo_utilisateur(int no_utilisateur) {
-        this.no_utilisateur = no_utilisateur;
-    }
-
-    public String getPseudo() {
-        return pseudo;
-    }
+    public Utilisateurs() { }
 
     public Utilisateurs(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe, int credit, boolean administrateur) {
         this.no_utilisateur = no_utilisateur;
@@ -41,6 +27,18 @@ public class Utilisateurs {
         this.mot_de_passe = mot_de_passe;
         this.credit = credit;
         this.administrateur = administrateur;
+    }
+
+    public int getNo_utilisateur() {
+        return no_utilisateur;
+    }
+
+    public void setNo_utilisateur(int no_utilisateur) {
+        this.no_utilisateur = no_utilisateur;
+    }
+
+    public String getPseudo() {
+        return pseudo;
     }
 
     public void setPseudo(String pseudo) {

@@ -29,7 +29,7 @@ public class ServletGestionCategories extends HttpServlet {
             throws ServletException, IOException {
         try {
             CategoriesManager categorieManager = new CategoriesManager();
-            List<Categories> listeCategorie = new ArrayList<>();
+            List<Categories> listeCategorie;
             listeCategorie = categorieManager.selectionnerToutesLesCategories();
 
             request.setAttribute("lstCategorie", listeCategorie);

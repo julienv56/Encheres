@@ -101,19 +101,19 @@ public class ArticlesVendus {
 		this.etatVente = etatVente;
 	}
 
-	public Utilisateurs getNo_utilisateur() {
+	public Utilisateurs getUtilisateur() {
 		return utilisateur;
 	}
 
-	public void setNo_utilisateur(Utilisateurs no_utilisateur) {
+	public void setUtilisateur(Utilisateurs utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
-	public Categories getNo_categorie() {
+	public Categories getCategorie() {
 		return categorie;
 	}
 
-	public void setNo_categorie(Categories no_categorie) {
+	public void setCategorie(Categories categorie) {
 		this.categorie = categorie;
 	}
 

@@ -72,15 +72,17 @@
             </div>
         </form>
         <form action="<%=request.getContextPath() %>/listeArticles" method="get">
-            <div class="card bg-light mb-3">
-                <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff"/>
-                    <h5 class="card-title">Product title</h5>
-                    <p class="card-text" style="width: 500px">Some quick example text to build on the card title and
-                        make up the bulk of the card's content.</p>
-                    <p class="bloc_left_price">99.00 $</p>
+
+            <c:forEach items="${lstArticles}" var="article">
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <img class="img-fluid" src="https://dummyimage.com/200x200/55595c/fff"/>
+                        <h5 class="card-title">${article.getNomArticle()}</h5>
+                        <p class="card-text" style="width: 500px">${article.getDescription()}</p>
+                        <p class="bloc_left_price">${article.getMiseAPrix()} points</p>
+                    </div>
                 </div>
-            </div>
+            </c:forEach>
         </form>
     </div>
 </div>

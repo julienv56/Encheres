@@ -1,5 +1,8 @@
 package fr.eni.encheres.servlet;
 
+import fr.eni.encheres.bll.ArticlesVendusManager;
+import fr.eni.encheres.bo.ArticlesVendus;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +19,14 @@ public class ServletListerArticle extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        try{
+            ArticlesVendusManager articlesVendusManager = new ArticlesVendusManager();
+            List<ArticlesVendus> listeArticles;
+            listeArticles = articlesVendusManager.selectionnerTousLesArticles();
+            req.setAttribute("lstArticles", listeArticles);
+        }catch (Exception e){
+            e.getStackTrace();
+        }
         RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
         rd.forward(req, resp);
     }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
+    <meta http-equiv="refresh" content="2;/Encheres"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script
@@ -22,7 +22,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">ENI-Enchere</a></li>
+                <li><a href="/Encheres">ENI-Enchere</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
@@ -48,7 +48,8 @@
         }
     }
 %>
-<h3>Hi <%=user %>, Login successful. <br> Your Session ID=<%=sessionID %>
+<h3>Hi <%=user %>, Login successful.
+    <%--    Your Session ID=<%=sessionID %>--%>
 </h3>
 <br>
 <form action="ServletLogout" method="post">

@@ -6,6 +6,7 @@ import fr.eni.encheres.bo.Utilisateurs;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,7 @@ public class ServletLogin extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             UtilisateursManager usersManager = new UtilisateursManager();
             Utilisateurs users = new Utilisateurs();
             System.out.println(request.getParameter("pseudo"));
@@ -33,6 +35,13 @@ public class ServletLogin extends HttpServlet {
             System.out.println(mdp);
             users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
             request.setAttribute("users", users);
+
+            //Cookie part
+            Cookie loginCookie = new Cookie("pseudo", pseudo);
+            loginCookie.setMaxAge(30 * 60); //setting cookie to expiry in 30 min
+            response.addCookie(loginCookie);
+            response.sendRedirect("LoginSuccess.jsp");
+
         } catch (Exception e) {
             e.printStackTrace();
         }

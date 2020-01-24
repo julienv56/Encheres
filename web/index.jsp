@@ -35,7 +35,8 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <c:if test="${!empty sessionScope.user}">
-                    <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Se deconnecter</a></li>
+                    <li><a href="profil.jsp"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                    <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
@@ -48,10 +49,14 @@
         </div>
     </div>
 </nav>
-
 <div class="jumbotron">
     <div class="container text-center">
-        <h3>Liste des encheres</h3>
+        <c:if test="${!empty sessionScope.user}">
+            <h3>Bonjour ${sessionScope.user}, voici la liste des encheres</h3>
+        </c:if>
+        <c:if test="${empty sessionScope.user}">
+            <h3>Liste des encheres</h3>
+        </c:if>
     </div>
 </div>
 <div class="jumbotron">

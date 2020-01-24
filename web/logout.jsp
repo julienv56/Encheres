@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
+    <meta http-equiv="refresh" content="2;/Encheres"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>login</title>
+    <title>logout</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -33,14 +34,12 @@
         </div>
     </div>
 </nav>
-<form class="form-group" action="<%=request.getContextPath()%>/login" method="post">
-    Pseudo:<input type="text" name="pseudo"/><br/>
-    Mot de passe:<input type="password" name="MotDePasse"/><br/>
-    <br/>
-    <input type="submit" value="Se connecter"/>
-</form>
-<form action="register.jsp">
-    <input type="submit" value="register"/>
-</form>
+<c:if test="${!empty sessionScope.user}">
+    <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
+        <h3>Valider la deconnection du profil ${sessionScope.user}</h3>
+        <br/>
+        <input type="submit" value="Valider"/>
+    </form>
+</c:if>
 </body>
 </html>

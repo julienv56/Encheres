@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class ServletLogin extends HttpServlet {
+    public static final String ATT_SESSION_USER = "sessionUtilisateur";
     private static final long serialVersionUID = 1L;
 
     /**
@@ -30,7 +31,6 @@ public class ServletLogin extends HttpServlet {
         users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
         request.setAttribute("users", users);
         String bddPseudo = users.getPseudo();
-        String bddName = users.getPrenom();
         //System.out.println(bddPseudo);
         if (bddPseudo == null) {
             response.sendRedirect("loginFailed.jsp");

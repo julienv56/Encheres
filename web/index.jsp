@@ -35,17 +35,22 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
                     S'inscrire</a></li>
-
-                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    Se Connecter
-                    <%--Gestion Affichage Statut connexion--%>
-                    <%--                    <c:if test="$(!connecte)">Se connecter</c:if>--%>
-                    <%--                    <c:if test="$(connecte)">Déconnexion</c:if>--%>
-                </a></li>
+                <li>
+                    <c:if test="${!empty sessionScope.user}">
+                        <a href="logout.jsp"> Se deconnecter</a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.user}">
+                        <a href="login.jsp"> Se connecter</a>
+                    </c:if>
+                    <%--                    <form action="ServletLogout" method="post">--%>
+                    <%--                        <input type="submit" value="Logout">--%>
+                    <%--                    </form>--%>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <div class="jumbotron">
     <div class="container text-center">
         <h3>Liste des encheres</h3>
@@ -102,3 +107,18 @@
 </div>
 </body>
 </html>
+
+
+<%--//                                    Cookie[] cookies = request.getCookies();--%>
+<%--//                                    if (cookies != null) {--%>
+<%--//                                        for (Cookie cookie : cookies) {--%>
+<%--//                                            String test = cookie.getComment();--%>
+<%--//                                            out.println("<h1>" + test + "</h1>");--%>
+
+<%--//                            if ((cookie.getName() == "JSESSIONID") && (cookie.getName() == "pseudo")) {--%>
+<%--//                                out.println("<a href=\"login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> je detecte 2 cookie / Se deconnecter</a>");--%>
+<%--//                            } else if (cookie.getName().equals("JSESSIONID")) {--%>
+<%--//                                out.println("<a href=\"login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> je detecte 1 cookie / Se connecter </a>");--%>
+<%--//                            }--%>
+<%--}--%>
+<%--}--%>

@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="#">ENI-Enchere</a></li>
-                <c:if test="${empty sessionScope.user}">
+                <c:if test="${!empty sessionScope.user}">
                     <li><a href="ServletListCategorie">Vendre un article</a></li>
                 </c:if>
             </ul>

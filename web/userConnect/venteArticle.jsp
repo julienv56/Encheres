@@ -19,6 +19,39 @@
     <title>Nouvelle vente</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">ENI-Enchere</a></li>
+                <c:if test="${!empty sessionScope.user}">
+                    <li><a href="ServletListCategorie">Vendre un article</a></li>
+                </c:if>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <c:if test="${!empty sessionScope.user}">
+                    <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                    <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
+                </c:if>
+                <c:if test="${empty sessionScope.user}">
+                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                    S'inscrire</a></li>
+                <li>
+                    <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+                    </c:if>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="jumbotron">
     <div class="container text-center">
         <h3>Nouvelle Vente</h3>
@@ -26,7 +59,7 @@
 </div>
 <div class="jumbotron">
     <div class="container">
-        <form>
+        <form action=""<%=request.getContextPath() %>/ServletAjoutArticle" method="get" %>>
             <div class="form-group">
                 <label for="article">Article</label>
                 <input type="text" class="form-control" id="article" placeholder="titre">

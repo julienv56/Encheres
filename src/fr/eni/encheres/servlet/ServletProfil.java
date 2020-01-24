@@ -25,7 +25,6 @@ public class ServletProfil extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String test = ((Utilisateurs) session.getAttribute("user")).getNom();
-            System.out.println(test);
             response.sendRedirect("profil.jsp");
         } catch (Exception e) {
             e.printStackTrace();

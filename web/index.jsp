@@ -112,7 +112,6 @@
                                     <div class="col" style="width: 300px">
                                         <p class="btn btn-danger btn-block">${article.getMiseAPrix()} points</p>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

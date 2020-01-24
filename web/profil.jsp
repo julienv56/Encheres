@@ -11,6 +11,7 @@
     <title>Profil</title>
 </head>
 <body>
+
 <div>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -28,8 +29,10 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <c:if test="${!empty sessionScope.user}">
-                        <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
-                        <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se deconnecter</a>
+                        <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon
+                            profil</a></li>
+                        <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se
+                            deconnecter</a>
                         </li>
                     </c:if>
                     <c:if test="${empty sessionScope.user}">
@@ -43,36 +46,62 @@
             </div>
         </div>
     </nav>
-    <blockquote class="blockquote text-center">
-        <c:if test="${!empty sessionScope.user}">
-        <dl class="row">
-            <dt class="col-sm-3">Pseudo</dt>
-            <dd class="col-sm-9">${sessionScope.user.pseudo}</dd>
-            <br>
-            <dt class="col-sm-3">Nom</dt>
-            <dd class="col-sm-9">${sessionScope.user.nom}</dd>
+    <div class="jumbotron">
+        <div class="container text-center">
+                <h3>Mon Profil</h3>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <div name="profil">
+                <c:if test="${!empty sessionScope.user}">
 
-            <dt class="col-sm-3">Prénom</dt>
-            <dd class="col-sm-9">${sessionScope.user.prenom}</dd>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th scope="row">Pseudo</th>
+                            <td>${sessionScope.user.pseudo}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nom</th>
+                            <td>${sessionScope.user.nom}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prenom</th>
+                            <td>${sessionScope.user.prenom}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>${sessionScope.user.email}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Telephone</th>
+                            <td>${sessionScope.user.telephone}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Rue</th>
+                            <td>${sessionScope.user.rue}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Code Postal</th>
+                            <td>${sessionScope.user.code_postal}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ville</th>
+                            <td>${sessionScope.user.ville}</td>
+                        </tr>
 
-            <dt class="col-sm-3">Email</dt>
-            <dd class="col-sm-9">${sessionScope.user.email}</dd>
+                        </tbody>
+                    </table>
 
-            <dt class="col-sm-3">Téléphone</dt>
-            <dd class="col-sm-9">${sessionScope.user.telephone}</dd>
 
-            <dt class="col-sm-3">Rue</dt>
-            <dd class="col-sm-9">${sessionScope.user.rue}</dd>
+                </c:if>
 
-            <dt class="col-sm-3">Code postal</dt>
-            <dd class="col-sm-9">${sessionScope.user.code_postal}</dd>
 
-            <dt class="col-sm-3">Ville</dt>
-            <dd class="col-sm-9">${sessionScope.user.ville}</dd>
-            </c:if>
-    </blockquote>
-
+            </div>
+        </div>
+    </div>
 </div>
-<button style="position: absolute" class="btn btn-danger" type="submit">Modifier</button>
+
 </body>
 </html>

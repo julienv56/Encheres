@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <c:if test="${!empty sessionScope.user}">
-                    <li><a href="profil.jsp"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                    <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
                     <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">

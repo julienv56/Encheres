@@ -46,15 +46,6 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
             PreparedStatement pstmt = cnx.prepareStatement(GETUSERS);
             pstmt.setString(1, pseudo);
             pstmt.setString(2, mot_de_passe);
-//            users.getNom();
-//            users.getPrenom();
-//            users.getEmail();
-//            users.getTelephone();
-//            users.getRue();
-//            users.getCode_postal();
-//            users.getVille();
-//            users.getCredit();
-            System.out.println(users.getNom());
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {

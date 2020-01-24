@@ -29,8 +29,7 @@ public class ServletProfil extends HttpServlet {
             String pseudo = ((String) session.getAttribute("user"));
             System.out.println("hello");
             System.out.println(pseudo);
-            users = usersManager.selectionnerProfilDuPseudo(pseudo);
-            System.out.println(users);
+            //users = usersManager.selectionnerProfilDuPseudo(pseudo);
         } catch (Exception e) {
             e.printStackTrace();
         }

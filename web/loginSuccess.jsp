@@ -34,37 +34,10 @@
         </div>
     </div>
 </nav>
-<%-- Vérification de la présence d'un objet utilisateur en session --%>
-    <c:if test="${!empty sessionScope.user}">
-    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-    <p class="succes">Vous êtes connecté(e) avec le pseudo : ${sessionScope.user}</p>
+<c:if test="${!empty sessionScope.user}">
+    <p class="succes">Vous êtes connecté(e) avec le pseudo : ${sessionScope.user.pseudo}</p>
 </c:if>
 
-<%--<%--%>
-<%--    //allow access only if session exists--%>
-<%--    String user = null;--%>
-<%--    if (session.getAttribute("user") == null) {--%>
-<%--        response.sendRedirect("index.jsp");--%>
-<%--    } else user = (String) session.getAttribute("user");--%>
-<%--    String sessionID = null;--%>
-<%--    Cookie[] cookies = request.getCookies();--%>
-<%--    boolean connected = false;--%>
-<%--    if (cookies != null) {--%>
-<%--        for (Cookie cookie : cookies) {--%>
-<%--            if (cookie.getName().equals("user")) {--%>
-<%--                user = cookie.getValue();--%>
-<%--                connected = true;--%>
-<%--            }--%>
-<%--            if (cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();--%>
-<%--        }--%>
-<%--    }--%>
-<%--%>--%>
-<%--<h3>Hi <%=user %>, Login successful.--%>
-<%--    &lt;%&ndash;    Your Session ID=<%=sessionID %>&ndash;%&gt;--%>
-<%--</h3>--%>
 <br>
-<%--<form action="ServletLogout" method="post">--%>
-<%--    <input type="submit" value="Logout">--%>
-<%--</form>--%>
 </body>
 </html>

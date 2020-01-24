@@ -35,7 +35,7 @@
     </div>
 </nav>
 <%-- Vérification de la présence d'un objet utilisateur en session --%>
-<c:if test="${!empty sessionScope.user}">
+    <c:if test="${!empty sessionScope.user}">
     <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
     <p class="succes">Vous êtes connecté(e) avec le pseudo : ${sessionScope.user}</p>
 </c:if>

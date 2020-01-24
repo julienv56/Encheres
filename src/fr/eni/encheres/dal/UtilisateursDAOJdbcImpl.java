@@ -38,14 +38,24 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
     }
 
     //private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
-    private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
+    private static final String GETUSERS = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
-    public Utilisateurs findAll(String pseudo, String mot_de_passe) {
+    public Utilisateurs findPseudo(String pseudo, String mot_de_passe) {
         Utilisateurs users = new Utilisateurs();
         try (Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pstmt = cnx.prepareStatement(GETUSERS);
             pstmt.setString(1, pseudo);
             pstmt.setString(2, mot_de_passe);
+//            users.getNom();
+//            users.getPrenom();
+//            users.getEmail();
+//            users.getTelephone();
+//            users.getRue();
+//            users.getCode_postal();
+//            users.getVille();
+//            users.getCredit();
+            System.out.println(users.getNom());
+
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 users = utilisateurBuilder(rs);
@@ -56,11 +66,42 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         return users;
     }
 
+
     private Utilisateurs utilisateurBuilder(ResultSet rs) throws SQLException {
         Utilisateurs users = new Utilisateurs();
         users.setPseudo(rs.getString("pseudo"));
         users.setMot_de_passe(rs.getString("mot_de_passe"));
+        users.setNom(rs.getString("nom"));
+        users.setPrenom(rs.getString("prenom"));
+        users.setEmail(rs.getString("email"));
+        users.setTelephone(rs.getString("telephone"));
+        users.setRue(rs.getString("rue"));
+        users.setCode_postal(rs.getString("code_postal"));
+        users.setVille(rs.getString("ville"));
+        users.setCredit(rs.getInt("credit"));
         return users;
     }
 
+    private static final String GETPROFIL = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+
+    public Utilisateurs getProfil(String pseudo) {
+        Utilisateurs users = new Utilisateurs();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(GETPROFIL);
+            pstmt.setString(1, pseudo);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                users = profilBuilder(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    private Utilisateurs profilBuilder(ResultSet rs) throws SQLException {
+        Utilisateurs users = new Utilisateurs();
+        users.setPseudo(rs.getString("pseudo"));
+        return users;
+    }
 }

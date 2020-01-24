@@ -31,6 +31,10 @@ public class UtilisateursManager {
     }
 
     public Utilisateurs selectionnerTousLesUtilisateurs(String pseudo, String mdp) {
-        return utilisateursDAO.findAll(pseudo, mdp);
+        return utilisateursDAO.findPseudo(pseudo, mdp);
+    }
+
+    public Utilisateurs selectionnerProfilDuPseudo(String pseudo) {
+        return utilisateursDAO.getProfil(pseudo);
     }
 }

@@ -52,7 +52,7 @@
 <div class="jumbotron">
     <div class="container text-center">
         <c:if test="${!empty sessionScope.user}">
-            <h3>Bonjour ${sessionScope.user}, voici la liste des encheres</h3>
+            <h3>Bonjour ${sessionScope.user.prenom}, voici la liste des encheres</h3>
         </c:if>
         <c:if test="${empty sessionScope.user}">
             <h3>Liste des encheres</h3>

@@ -24,12 +24,9 @@ public class ServletProfil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
-            UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = new Utilisateurs();
-            String pseudo = ((String) session.getAttribute("user"));
-            System.out.println("hello");
-            System.out.println(pseudo);
-            //users = usersManager.selectionnerProfilDuPseudo(pseudo);
+            String test = ((Utilisateurs) session.getAttribute("user")).getNom();
+            System.out.println(test);
+            response.sendRedirect("profil.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

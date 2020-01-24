@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ajoutArticle")
+@WebServlet("/AjoutArticle")
 public class ServletAjoutArticle extends HttpServlet {
 public static final long serialVersionUID = 1L;
 
@@ -18,7 +18,6 @@ public static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ICI --> GET");
         doPost(req,resp);
     }
 
@@ -30,9 +29,7 @@ public static final long serialVersionUID = 1L;
             e.getStackTrace();
         }
 
-        System.out.println("ICI ---> POST");
         RequestDispatcher rd = req.getRequestDispatcher("/userConnect/venteArticle.jsp");
-        System.out.println(rd);
         rd.forward(req, resp);
     }
 }

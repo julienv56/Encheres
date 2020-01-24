@@ -19,7 +19,6 @@
                 <br/>
                 <button class="btn btn-danger" type="submit">Deconnexion</button>
             </form>
-
     </c:when>
     <c:otherwise>
         <h3>Erreur, vous devez d'avord vous connecter</h3>

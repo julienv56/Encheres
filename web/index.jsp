@@ -33,14 +33,15 @@
                 <li><a href="#">ENI-Enchere</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
+                <c:if test="${!empty sessionScope.user}">
+                    <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Se deconnecter</a></li>
+                </c:if>
+                <c:if test="${empty sessionScope.user}">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
                     S'inscrire</a></li>
                 <li>
-                    <c:if test="${!empty sessionScope.user}">
-                        <a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Se deconnecter</a>
-                    </c:if>
-                    <c:if test="${empty sessionScope.user}">
-                        <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+                    <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
                     </c:if>
                 </li>
             </ul>

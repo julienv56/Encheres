@@ -33,7 +33,15 @@
 
                 <c:if test="${!empty sessionScope.user}">
                     <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
-                    <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="logout.jsp"><span
+                            class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
                 <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>

@@ -11,35 +11,15 @@
     <title>logout</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#myNavbar">
-                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li><a href="/Encheres">ENI-Enchere</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    S'inscrire</a></li>
-                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    Se connecter</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <c:choose>
     <c:when test="${!empty sessionScope.user}">
-        <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
-            <h3>Valider la déconnexion du profil ${sessionScope.user}</h3>
-            <br/>
-            <input type="submit" class="btn btn-outline-danger" value="Valider"/>
-        </form>
+        <blockquote class="blockquote text-center">
+            <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
+                <h3>Valider la déconnexion du profil ${sessionScope.user.pseudo}</h3>
+                <br/>
+                <button class="btn btn-danger" type="submit">Deconnexion</button>
+            </form>
+        </blockquote>
     </c:when>
     <c:otherwise>
         <h3>Erreur, vous devez d'avord vous connecter</h3>

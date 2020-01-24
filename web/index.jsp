@@ -44,11 +44,19 @@
                     </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
-                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    S'inscrire</a></li>
-                <li>
-                    <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
-                    </c:if>
+                    <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                        S'inscrire</a></li>
+                    <li>
+                    <li><a data-toggle="modal" data-target="#myModalout" href="login.jsp"><span
+                            class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModalout" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
                 </li>
             </ul>
         </div>

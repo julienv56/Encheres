@@ -43,36 +43,36 @@
             </div>
         </div>
     </nav>
-    <div name="profil"
-    <c:if test="${!empty sessionScope.user}">
-    <dl class="row">
-        <dt class="col-sm-3">Pseudo</dt>
-        <dd class="col-sm-9">${sessionScope.user.pseudo}</dd>
-        <br>
-        <dt class="col-sm-3">Nom</dt>
-        <dd class="col-sm-9">${sessionScope.user.nom}</dd>
+    <blockquote class="blockquote text-center">
+        <c:if test="${!empty sessionScope.user}">
+        <dl class="row">
+            <dt class="col-sm-3">Pseudo</dt>
+            <dd class="col-sm-9">${sessionScope.user.pseudo}</dd>
+            <br>
+            <dt class="col-sm-3">Nom</dt>
+            <dd class="col-sm-9">${sessionScope.user.nom}</dd>
 
-        <dt class="col-sm-3">Prénom</dt>
-        <dd class="col-sm-9">${sessionScope.user.prenom}</dd>
+            <dt class="col-sm-3">Prénom</dt>
+            <dd class="col-sm-9">${sessionScope.user.prenom}</dd>
 
-        <dt class="col-sm-3">Email</dt>
-        <dd class="col-sm-9">${sessionScope.user.email}</dd>
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">${sessionScope.user.email}</dd>
 
-        <dt class="col-sm-3">Téléphone</dt>
-        <dd class="col-sm-9">${sessionScope.user.telephone}</dd>
+            <dt class="col-sm-3">Téléphone</dt>
+            <dd class="col-sm-9">${sessionScope.user.telephone}</dd>
 
-        <dt class="col-sm-3">Rue</dt>
-        <dd class="col-sm-9">${sessionScope.user.rue}</dd>
+            <dt class="col-sm-3">Rue</dt>
+            <dd class="col-sm-9">${sessionScope.user.rue}</dd>
 
-        <dt class="col-sm-3">Code postal</dt>
-        <dd class="col-sm-9">${sessionScope.user.code_postal}</dd>
+            <dt class="col-sm-3">Code postal</dt>
+            <dd class="col-sm-9">${sessionScope.user.code_postal}</dd>
 
-        <dt class="col-sm-3">Ville</dt>
-        <dd class="col-sm-9">${sessionScope.user.ville}</dd>
-        </c:if>
-
+            <dt class="col-sm-3">Ville</dt>
+            <dd class="col-sm-9">${sessionScope.user.ville}</dd>
+            </c:if>
+    </blockquote>
 
 </div>
-
+<button style="position: absolute" class="btn btn-danger" type="submit">Modifier</button>
 </body>
 </html>

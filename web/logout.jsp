@@ -33,12 +33,17 @@
         </div>
     </div>
 </nav>
-<c:if test="${!empty sessionScope.user}">
-    <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
-        <h3>Valider la déconnexion du profil ${sessionScope.user}</h3>
-        <br/>
-        <input type="submit" class="btn btn-outline-danger" value="Valider"/>
-    </form>
-</c:if>
+<c:choose>
+    <c:when test="${!empty sessionScope.user}">
+        <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
+            <h3>Valider la déconnexion du profil ${sessionScope.user}</h3>
+            <br/>
+            <input type="submit" class="btn btn-outline-danger" value="Valider"/>
+        </form>
+    </c:when>
+    <c:otherwise>
+        <h3>Erreur, vous devez d'avord vous connecter</h3>
+    </c:otherwise>
+</c:choose>
 </body>
 </html>

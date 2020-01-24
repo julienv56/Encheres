@@ -63,8 +63,8 @@
 <%--    &lt;%&ndash;    Your Session ID=<%=sessionID %>&ndash;%&gt;--%>
 <%--</h3>--%>
 <br>
-<form action="ServletLogout" method="post">
-    <input type="submit" value="Logout">
-</form>
+<%--<form action="ServletLogout" method="post">--%>
+<%--    <input type="submit" value="Logout">--%>
+<%--</form>--%>
 </body>
 </html>

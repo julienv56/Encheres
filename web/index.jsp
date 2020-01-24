@@ -37,14 +37,11 @@
                     S'inscrire</a></li>
                 <li>
                     <c:if test="${!empty sessionScope.user}">
-                        <a href="logout.jsp"> Se deconnecter</a>
+                        <a href="logout.jsp"><span class="glyphicon glyphicon-log-in"></span> Se deconnecter</a>
                     </c:if>
                     <c:if test="${empty sessionScope.user}">
-                        <a href="login.jsp"> Se connecter</a>
+                        <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
                     </c:if>
-                    <%--                    <form action="ServletLogout" method="post">--%>
-                    <%--                        <input type="submit" value="Logout">--%>
-                    <%--                    </form>--%>
                 </li>
             </ul>
         </div>

@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="refresh" content="2;/Encheres"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script
@@ -36,9 +35,9 @@
 </nav>
 <c:if test="${!empty sessionScope.user}">
     <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
-        <h3>Valider la deconnection du profil ${sessionScope.user}</h3>
+        <h3>Valider la déconnexion du profil ${sessionScope.user}</h3>
         <br/>
-        <input type="submit" value="Valider"/>
+        <input type="submit" class="btn btn-outline-danger" value="Valider"/>
     </form>
 </c:if>
 </body>

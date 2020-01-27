@@ -50,7 +50,7 @@
                             </div>
                             <div class="modal-footer">
                                 <form action="<%=request.getContextPath()%>/ServletLogout" method="post">
-                                    <button type="submit" class="btn btn-danger" href="logout.jsp">
+                                    <button type="submit" class="btn btn-danger">
                                         Oui
                                     </button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">

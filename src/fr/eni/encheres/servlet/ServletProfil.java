@@ -49,7 +49,7 @@ public class ServletProfil extends HttpServlet {
                 }
             }
             users = usersManager.supprimerProfilUtilisateurs(id);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/Encheres");
         } catch (Exception e) {
             e.printStackTrace();
         }

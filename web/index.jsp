@@ -125,17 +125,20 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
         </form>
 
-        <form action="<%=request.getContextPath() %>/category" method="get">
+
             <div class="form-group" style="width: 200px">
                 <label for="sel1">Categorie:</label>
-                <select class="form-control" id="categoryId" name="category">
-                    <option value="">Selectionner :</option>
+                <form action="<%=request.getContextPath() %>/TrierParCategory" method="post">
+                <select class="form-control" id="categoryId" name="categorie">
+                    <option value="0">Selectionner :</option>
                     <c:forEach items="${lstCategorie}" var="category">
                         <option value="${category.no_categorie}">${category.libelle}</option>
                     </c:forEach>
                 </select>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Valider</button>
+                </form>
             </div>
-        </form>
+
         <form action="<%=request.getContextPath() %>/listeArticles" method="get">
 
             <c:forEach items="${lstArticles}" var="article">
@@ -150,7 +153,6 @@
                             <div class="card-body">
                                 <h4 class="card-title"><a href="#" title="View Product">${article.getNomArticle()}</a>
                                 </h4>
-                                <p class="card-text">${article.getDescription()}</p>
                                 <p>${article.getUtilisateur().pseudo}</p>
                                 <div class="row">
                                     <div class="col" style="width: 300px">

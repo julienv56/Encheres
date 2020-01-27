@@ -21,6 +21,37 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
     private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, " +
             "prix_initial, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?)";
 
+    private static final String LISTER_BY_CATEGORIE = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +
+            "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
+            "FROM ARTICLES_VENDUS a " +
+            "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
+            "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
+            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
+            "AND a.no_categorie = ?";
+
+
+    public List<ArticlesVendus> trierParCategorie(int no_categorie) {
+        ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            if (no_categorie == 0){
+                listeArticleDuJour();
+            }else{
+                PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_CATEGORIE);
+                pstmt.setInt(1, no_categorie);
+                ResultSet rs = pstmt.executeQuery();
+                ArticlesVendus article = new ArticlesVendus();
+                while(rs.next()){
+                    article = articleBuilder(rs);
+                    listeArticle.add(article);
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listeArticle;
+    }
+
     @Override
     public List<ArticlesVendus> listeArticleDuJour() {
         ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();

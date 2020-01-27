@@ -43,7 +43,7 @@ public class ServletAjoutArticle extends HttpServlet {
 
             ArticlesVendusManager articleManager = new ArticlesVendusManager();
             ArticlesVendus article = articleManager.ajouter(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie);
-            System.out.println(article);
+
         } catch (Exception e) {
             e.getMessage();
         }

@@ -8,6 +8,7 @@ import fr.eni.encheres.dal.ArticleVendusDAOJdbcImpl;
 import fr.eni.encheres.dal.ArticlesVendusDAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticlesVendusManager {
@@ -34,5 +35,9 @@ public class ArticlesVendusManager {
         article.setCategorie(categorie);
         this.articlesVendusDAO.insert(article);
         return article;
+    }
+
+    public List<ArticlesVendus> listerParCategorie(int no_categorie) {
+        return articlesVendusDAO.trierParCategorie(no_categorie);
     }
 }

@@ -81,7 +81,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
         </form>
 
-        <form action="<%=request.getContextPath() %>/categorie" method="get">
+        <form action="<%=request.getContextPath() %>/category" method="get">
             <div class="form-group" style="width: 200px">
                 <label for="sel1">Categorie:</label>
                 <select class="form-control" id="categoryId" name="category">

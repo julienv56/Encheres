@@ -7,4 +7,6 @@ import java.util.List;
 public interface ArticlesVendusDAO {
 
     List<ArticlesVendus> listeArticleDuJour();
+
+    void insert(ArticlesVendus article);
 }

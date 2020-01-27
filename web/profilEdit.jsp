@@ -62,13 +62,41 @@
                     </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
-                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    S'inscrire</a></li>
-                <li>
-                    <a href="login.jsp"> <span style="cursor: pointer"
-                                               class="glyphicon glyphicon-log-in"></span> Se connecter</a>
-                    </c:if>
-                </li>
+                    <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                        S'inscrire</a></li>
+                    <li><a data-toggle="modal" data-target="#myModalCo"><span
+                            class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
+
+                    <!-- Modal connexion -->
+                    <div class="modal fade" id="myModalCo">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Connexion</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form action="<%=request.getContextPath()%>/login" method="post">
+                                    <div class="modal-body">
+                                        <input name="pseudo" class="form-control" placeholder="pseudo" type="text">
+                                        <input name="MotDePasse" class="form-control" placeholder="******"
+                                               type="password">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">
+                                            Valider
+                                        </button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Fermer
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -77,27 +105,28 @@
     <tbody>
     <tr>
         <th scope="row">Pseudo</th>
-        <td><input name="pseudoEdited" class="form-control" type="text"></td>
+        <td><input name="pseudoEdited" class="form-control" type="text" value="${sessionScope.user.pseudo}"></td>
         <th scope="row">Nom</th>
-        <td><input name="nomEdited" class="form-control" type="text"></td>
+        <td><input name="nomEdited" class="form-control" type="text" value="${sessionScope.user.nom}"></td>
     </tr>
     <tr>
         <th scope="row">Prenom</th>
-        <td><input name="prenomEdited" class="form-control" type="text"></td>
+        <td><input name="prenomEdited" class="form-control" type="text" value="${sessionScope.user.prenom}"></td>
         <th scope="row">Email</th>
-        <td><input name="emailEdited" class="form-control" type="text"></td>
+        <td><input name="emailEdited" class="form-control" type="text" value="${sessionScope.user.email}"></td>
     </tr>
     <tr>
         <th scope="row">Telephone</th>
-        <td><input name="telephoneEdited" class="form-control" type="text"></td>
+        <td><input name="telephoneEdited" class="form-control" type="text" value="${sessionScope.user.telephone}"></td>
         <th scope="row">Rue</th>
-        <td><input name="rueEdited" class="form-control" type="text"></td>
+        <td><input name="rueEdited" class="form-control" type="text" value="${sessionScope.user.rue}"></td>
     </tr>
     <tr>
         <th scope="row">Code Postal</th>
-        <td><input name="codePostalEdited" class="form-control" type="text"></td>
+        <td><input name="codePostalEdited" class="form-control" type="text" value="${sessionScope.user.code_postal}">
+        </td>
         <th scope="row">Ville</th>
-        <td><input name="villeEdited" class="form-control" type="text"></td>
+        <td><input name="villeEdited" class="form-control" type="text" value="${sessionScope.user.ville}"></td>
     </tr>
     <tr>
         <th scope="row">Mot de passe actuel</th>

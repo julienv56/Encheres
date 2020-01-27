@@ -67,12 +67,44 @@
                                 </div>
                             </c:if>
                             <c:if test="${empty sessionScope.user}">
-                            <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                                S'inscrire</a></li>
-                            <li>
-                                <a href="login.jsp"> <span style="cursor: pointer"
-                                                           class="glyphicon glyphicon-log-in"></span> Se connecter</a>
-                                </c:if>
+                                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                                    S'inscrire</a></li>
+                                <li><a data-toggle="modal" data-target="#myModalCo"><span
+                                        class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
+
+                                <!-- Modal connexion -->
+                                <div class="modal fade" id="myModalCo">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title">Connexion</h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="<%=request.getContextPath()%>/login" method="post">
+                                                <div class="modal-body">
+                                                    <input name="pseudo" class="form-control" placeholder="pseudo"
+                                                           type="text">
+                                                    <input name="MotDePasse" class="form-control" placeholder="******"
+                                                           type="password">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Valider
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">
+                                                        Fermer
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                             </li>
                         </ul>
                     </div>

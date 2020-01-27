@@ -12,17 +12,50 @@
 </head>
 <body>
 <c:choose>
-    <c:when test="${!empty sessionScope.user}">
-        <blockquote class="blockquote text-center">
-            <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
-                <h3>Valider la déconnexion du profil ${sessionScope.user.pseudo}</h3>
-                <br/>
-                <button class="btn btn-danger" type="submit">Deconnexion</button>
-            </form>
+<c:when test="${!empty sessionScope.user}">
+<blockquote class="blockquote text-center">
+    <form class="form-group" action="<%=request.getContextPath()%>/ServletLogout" method="post">
+        <h3>Valider la déconnexion du profil ${sessionScope.user.pseudo}</h3>
+        <br/>
+        <button class="btn btn-danger" type="submit">Deconnexion</button>
+    </form>
     </c:when>
     <c:otherwise>
-        <h3>Erreur, vous devez d'avord vous connecter</h3>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#myNavbar">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Encheres">ENI-Enchere</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <c:if test="${!empty sessionScope.user}">
+                        <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon
+                            profil</a></li>
+                        <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se
+                            deconnecter</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${empty sessionScope.user}">
+                    <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                        S'inscrire</a></li>
+                    <li>
+                        <a href="login.jsp"> <span class="glyphicon glyphicon-log-in"></span> Se connecter</a>
+                        </c:if>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h3 style="text-align: center">Erreur, vous devez d'abord vous connecter</h3>
     </c:otherwise>
-</c:choose>
+    </c:choose>
 </body>
 </html>

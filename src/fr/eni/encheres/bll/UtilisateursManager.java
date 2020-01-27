@@ -34,7 +34,11 @@ public class UtilisateursManager {
         return utilisateursDAO.findPseudo(pseudo, mdp);
     }
 
-    public Utilisateurs selectionnerProfilDuPseudo(String pseudo) {
-        return utilisateursDAO.getProfil(pseudo);
+    public Utilisateurs supprimerProfilUtilisateurs(Integer no_utilisateur) {
+        Utilisateurs users = new Utilisateurs();
+        users.setNo_utilisateur(no_utilisateur);
+        this.utilisateursDAO.supprimerProfil(users);
+
+        return users;
     }
 }

@@ -50,8 +50,7 @@
             <p class="text-center"><a href="register.jsp" class="btn">S'enregistrer</a></p>
         </form>
     </article>
-</div> <!-- card.// -->
-
+</div>
 
 </body>
 </html>

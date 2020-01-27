@@ -29,4 +29,28 @@ public class ServletProfil extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            int id = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
+            String pseudo = ((Utilisateurs) session.getAttribute("user")).getPseudo();
+            UtilisateursManager usersManager = new UtilisateursManager();
+            Utilisateurs users = new Utilisateurs();
+
+            Cookie loginCookie = null;
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    loginCookie = cookie;
+                    loginCookie.setMaxAge(0);
+                    response.addCookie(loginCookie);
+                }
+            }
+            users = usersManager.supprimerProfilUtilisateurs(id);
+            response.sendRedirect("profil.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

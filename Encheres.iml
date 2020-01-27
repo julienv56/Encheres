@@ -27,5 +27,7 @@
     <orderEntry type="library" name="sqljdbc42" level="project" />
     <orderEntry type="library" name="jstl-standard" level="project" />
     <orderEntry type="library" name="jstl-1.2" level="project" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

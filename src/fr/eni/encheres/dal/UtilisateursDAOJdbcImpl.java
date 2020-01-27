@@ -37,7 +37,6 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
-    //private static final String GETUSERS = "SELECT pseudo, mot_de_passe FROM UTILISATEURS WHERE pseudo = 'julien' AND mot_de_passe = 'test'";
     private static final String GETUSERS = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 
     public Utilisateurs findPseudo(String pseudo, String mot_de_passe) {
@@ -57,9 +56,9 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         return users;
     }
 
-
     private Utilisateurs utilisateurBuilder(ResultSet rs) throws SQLException {
         Utilisateurs users = new Utilisateurs();
+        users.setNo_utilisateur(rs.getInt("no_utilisateur"));
         users.setPseudo(rs.getString("pseudo"));
         users.setMot_de_passe(rs.getString("mot_de_passe"));
         users.setNom(rs.getString("nom"));
@@ -94,5 +93,17 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         Utilisateurs users = new Utilisateurs();
         users.setPseudo(rs.getString("pseudo"));
         return users;
+    }
+
+    private static final String SUPPPROFIL = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+
+    public void supprimerProfil(Utilisateurs users) {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(SUPPPROFIL);
+            pstmt.setInt(1, users.getNo_utilisateur());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

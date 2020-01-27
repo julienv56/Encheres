@@ -58,7 +58,6 @@
                 <div class="container text-center">
                     <div name="profil">
                         <c:if test="${!empty sessionScope.user}">
-
                             <table class="table">
                                 <tbody>
                                 <tr>
@@ -96,6 +95,14 @@
 
                                 </tbody>
                             </table>
+                            <form style="text-align: left" action="<%=request.getContextPath()%>/ServletProfil"
+                                  method="post">
+                                <button class="btn btn-info" type="submit">Modifier profil</button>
+                                <button class="btn btn-danger" type="submit">Supprimer profil</button>
+                            </form>
+                        </c:if>
+                        <c:if test="${!empty cookie}">
+                            <h1>Hello</h1>
                         </c:if>
                     </div>
                 </div>

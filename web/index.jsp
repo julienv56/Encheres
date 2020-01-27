@@ -130,7 +130,7 @@
                 <label for="sel1">Categorie:</label>
                 <form action="<%=request.getContextPath() %>/TrierParCategory" method="post">
                 <select class="form-control" id="categoryId" name="categorie">
-                    <option value="0">Selectionner :</option>
+                    <option value="0">Tout Selectionner</option>
                     <c:forEach items="${lstCategorie}" var="category">
                         <option value="${category.no_categorie}">${category.libelle}</option>
                     </c:forEach>

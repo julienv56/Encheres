@@ -34,7 +34,13 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
         ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {
             if (no_categorie == 0){
-                listeArticleDuJour();
+                PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_DU_JOUR);
+                ResultSet rs = pstmt.executeQuery();
+                ArticlesVendus article = new ArticlesVendus();
+                while (rs.next()) {
+                    article = articleBuilder(rs);
+                    listeArticle.add(article);
+                }
             }else{
                 PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_CATEGORIE);
                 pstmt.setInt(1, no_categorie);

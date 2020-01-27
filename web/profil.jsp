@@ -187,9 +187,34 @@
                         <c:if test="${!empty sessionScope.user}">
                             <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon
                                 profil</a></li>
-                            <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span> Se
-                                deconnecter</a>
-                            </li>
+                            <li><a data-toggle="modal" data-target="#myModalDeco"><span
+                                    class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
+                            <!-- Modal deco -->
+                            <div class="modal fade" id="myModalDeco">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Confirmation</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Etes-vous sur de vouloir vous deconnecter ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="<%=request.getContextPath()%>/ServletLogout" method="post">
+                                                <button type="submit" class="btn btn-danger" href="logout.jsp">
+                                                    Oui
+                                                </button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Non
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </c:if>
                         <c:if test="${empty sessionScope.user}">
                             <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>

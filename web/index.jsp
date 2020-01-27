@@ -166,18 +166,3 @@
 </div>
 </body>
 </html>
-
-
-<%--//                                    Cookie[] cookies = request.getCookies();--%>
-<%--//                                    if (cookies != null) {--%>
-<%--//                                        for (Cookie cookie : cookies) {--%>
-<%--//                                            String test = cookie.getComment();--%>
-<%--//                                            out.println("<h1>" + test + "</h1>");--%>
-
-<%--//                            if ((cookie.getName() == "JSESSIONID") && (cookie.getName() == "pseudo")) {--%>
-<%--//                                out.println("<a href=\"login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> je detecte 2 cookie / Se deconnecter</a>");--%>
-<%--//                            } else if (cookie.getName().equals("JSESSIONID")) {--%>
-<%--//                                out.println("<a href=\"login.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> je detecte 1 cookie / Se connecter </a>");--%>
-<%--//                            }--%>
-<%--}--%>
-<%--}--%>

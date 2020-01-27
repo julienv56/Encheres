@@ -32,34 +32,78 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <c:if test="${!empty sessionScope.user}">
-                    <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
-                    <li><a data-toggle="modal" data-target="#myModal" href="logout.jsp"><span
-                            class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                <li><a data-toggle="modal" data-target="#myModalDeco"><span
+                        class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
+                <!-- Modal deco -->
+                <div class="modal fade" id="myModalDeco">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Confirmation</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Etes-vous sur de vouloir vous deconnecter ?
+                            </div>
+                            <div class="modal-footer">
+                                <form action="<%=request.getContextPath()%>/ServletLogout" method="post">
+                                    <button type="submit" class="btn btn-danger" href="logout.jsp">
+                                        Oui
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Non
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
+                </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
-                    <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                        S'inscrire</a></li>
-                    <li>
-                    <li><a data-toggle="modal" data-target="#myModalout" href="login.jsp"><span
-                            class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModalout" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                    S'inscrire</a></li>
+                <li>
+                <li><a data-toggle="modal" data-target="#myModalCo"><span
+                        class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
+
+                <!-- Modal connexion -->
+                <div class="modal fade" id="myModalCo">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Connexion</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+
+                            <form action="<%=request.getContextPath()%>/login" method="post">
+                                <div class="modal-body">
+                                    <input name="pseudo" class="form-control" placeholder="pseudo" type="text">
+                                    <input name="MotDePasse" class="form-control" placeholder="******"
+                                           type="password">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        Valider
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Fermer
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </c:if>
-                </li>
-            </ul>
+                </div>
         </div>
+
+        </c:if>
+        </li>
+        </ul>
+    </div>
     </div>
 </nav>
 <div class="jumbotron">

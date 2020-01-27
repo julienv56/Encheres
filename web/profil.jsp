@@ -104,9 +104,7 @@
                                     data-target="#modalCenterSupp">
                                 Supprimer le profil
                             </button>
-
                             <!-- Modal -->
-                            <%--                            <div class="modal fade" id="modalCenterSupp" tabindex="-1" role="dialog" aria-labelledby="examplModalCenterTitle" aria-hidden="true">--%>
                             <div class="modal fade" id="modalCenterSupp">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

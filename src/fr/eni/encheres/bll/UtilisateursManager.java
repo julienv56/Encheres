@@ -41,4 +41,22 @@ public class UtilisateursManager {
 
         return users;
     }
+
+    public Utilisateurs modifier(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone, String rue, String code_postal, String ville, String mot_de_passe) {
+        Utilisateurs users = new Utilisateurs();
+        users.setNo_utilisateur(no_utilisateur);
+        users.setPseudo(pseudo);
+        users.setNom(nom);
+        users.setPrenom(prenom);
+        users.setEmail(email);
+        users.setTelephone(telephone);
+        users.setRue(rue);
+        users.setCode_postal(code_postal);
+        users.setVille(ville);
+        users.setMot_de_passe(mot_de_passe);
+
+        this.utilisateursDAO.edit(users);
+        return users;
+    }
+
 }

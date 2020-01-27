@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/edit")
@@ -34,6 +35,8 @@ public class ServletEditProfil extends HttpServlet {
         String mot_de_passe;
 
         try {
+            HttpSession session = request.getSession();
+            int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
             pseudo = request.getParameter("pseudoEdited");
             nom = request.getParameter("nomEdited");
             prenom = request.getParameter("prenomEdited");
@@ -44,10 +47,8 @@ public class ServletEditProfil extends HttpServlet {
             ville = request.getParameter("villeEdited");
             mot_de_passe = request.getParameter("newPasswordEdited");
 
-            System.out.println(pseudo);
-
-//            UtilisateursManager usersManager = new UtilisateursManager();
-//            Utilisateurs users = usersManager.modifier(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe);
+            UtilisateursManager usersManager = new UtilisateursManager();
+            Utilisateurs users = usersManager.modifier(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe);
 
         } catch (NumberFormatException ignored) {
         }

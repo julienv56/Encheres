@@ -5,7 +5,9 @@ import java.sql.*;
 import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Utilisateurs;
 
+import javax.jms.Session;
 import javax.rmi.CORBA.Util;
+import javax.servlet.http.HttpSession;
 
 public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
 
@@ -35,6 +37,35 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static final String EDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?;";
+
+    public void edit(Utilisateurs users) {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(EDIT);
+            pstmt.setString(1, users.getPseudo());
+            pstmt.setString(2, users.getNom());
+            pstmt.setString(3, users.getPrenom());
+            pstmt.setString(4, users.getEmail());
+            pstmt.setString(5, users.getTelephone());
+            pstmt.setString(6, users.getRue());
+            pstmt.setString(7, users.getCode_postal());
+            pstmt.setString(8, users.getVille());
+            pstmt.setString(9, users.getMot_de_passe());
+            pstmt.setInt(10, users.getNo_utilisateur());
+
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Utilisateurs editBuilder(ResultSet rs) throws SQLException {
+        Utilisateurs users = new Utilisateurs();
+        users.setNo_utilisateur(rs.getInt("no_utilisateur"));
+        return users;
     }
 
     private static final String GETUSERS = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";

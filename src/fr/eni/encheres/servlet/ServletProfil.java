@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/ServletProfil")
 public class ServletProfil extends HttpServlet {
@@ -48,7 +49,7 @@ public class ServletProfil extends HttpServlet {
                 }
             }
             users = usersManager.supprimerProfilUtilisateurs(id);
-            response.sendRedirect("profil.jsp");
+            response.sendRedirect("index.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

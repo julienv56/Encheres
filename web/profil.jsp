@@ -98,11 +98,42 @@
                             <form style="text-align: left" action="<%=request.getContextPath()%>/ServletProfil"
                                   method="post">
                                 <button class="btn btn-info" type="submit">Modifier profil</button>
-                                <button class="btn btn-danger" type="submit">Supprimer profil</button>
+                                    <%--                                <button class="btn btn-danger" type="submit">Supprimer profil</button>--%>
                             </form>
-                        </c:if>
-                        <c:if test="${!empty cookie}">
-                            <h1>Hello</h1>
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#modalCenterSupp">
+                                Supprimer le profil
+                            </button>
+
+                            <!-- Modal -->
+                            <%--                            <div class="modal fade" id="modalCenterSupp" tabindex="-1" role="dialog" aria-labelledby="examplModalCenterTitle" aria-hidden="true">--%>
+                            <div class="modal fade" id="modalCenterSupp">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation
+                                                suppression</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Etes-vous sur de vouloir supprimer le profil ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="<%=request.getContextPath()%>/ServletProfil" method="post">
+                                                <button type="submit" class="btn btn-danger" href="/ServletProfil">
+                                                    Supprimer
+                                                </button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Fermer
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </c:if>
                     </div>
                 </div>

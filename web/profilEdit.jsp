@@ -101,59 +101,86 @@
         </div>
     </div>
 </nav>
-<table class="table">
-    <tbody>
-    <tr>
-        <th scope="row">Pseudo</th>
-        <td><input name="pseudoEdited" class="form-control" type="text" value="${sessionScope.user.pseudo}"></td>
-        <th scope="row">Nom</th>
-        <td><input name="nomEdited" class="form-control" type="text" value="${sessionScope.user.nom}"></td>
-    </tr>
-    <tr>
-        <th scope="row">Prenom</th>
-        <td><input name="prenomEdited" class="form-control" type="text" value="${sessionScope.user.prenom}"></td>
-        <th scope="row">Email</th>
-        <td><input name="emailEdited" class="form-control" type="text" value="${sessionScope.user.email}"></td>
-    </tr>
-    <tr>
-        <th scope="row">Telephone</th>
-        <td><input name="telephoneEdited" class="form-control" type="text" value="${sessionScope.user.telephone}"></td>
-        <th scope="row">Rue</th>
-        <td><input name="rueEdited" class="form-control" type="text" value="${sessionScope.user.rue}"></td>
-    </tr>
-    <tr>
-        <th scope="row">Code Postal</th>
-        <td><input name="codePostalEdited" class="form-control" type="text" value="${sessionScope.user.code_postal}">
-        </td>
-        <th scope="row">Ville</th>
-        <td><input name="villeEdited" class="form-control" type="text" value="${sessionScope.user.ville}"></td>
-    </tr>
-    <tr>
-        <th scope="row">Mot de passe actuel</th>
-        <td><input name="password" class="form-control" type="password"></td>
-        <th></th>
-        <td></td>
-    </tr>
-    <tr>
-        <th scope="row">Nouveau mot de passe</th>
-        <td><input name="newPasswordEdited" class="form-control" type="password"></td>
-        <th scope="row">Confirmation</th>
-        <td><input name="confirmNewPasswordEdited" class="form-control" type="password"></td>
-    </tr>
-    </tbody>
-</table>
+<form action="<%=request.getContextPath()%>/edit" method="post">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th scope="row">Pseudo</th>
+            <td><input name="pseudoEdited" class="form-control" type="text" value="${sessionScope.user.pseudo}"></td>
+            <th scope="row">Nom</th>
+            <td><input name="nomEdited" class="form-control" type="text" value="${sessionScope.user.nom}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Prenom</th>
+            <td><input name="prenomEdited" class="form-control" type="text" value="${sessionScope.user.prenom}"></td>
+            <th scope="row">Email</th>
+            <td><input name="emailEdited" class="form-control" type="text" value="${sessionScope.user.email}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Telephone</th>
+            <td><input name="telephoneEdited" class="form-control" type="text" value="${sessionScope.user.telephone}">
+            </td>
+            <th scope="row">Rue</th>
+            <td><input name="rueEdited" class="form-control" type="text" value="${sessionScope.user.rue}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Code Postal</th>
+            <td><input name="codePostalEdited" class="form-control" type="text"
+                       value="${sessionScope.user.code_postal}">
+            </td>
+            <th scope="row">Ville</th>
+            <td><input name="villeEdited" class="form-control" type="text" value="${sessionScope.user.ville}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Mot de passe actuel</th>
+            <td><input name="password" class="form-control" type="password"></td>
+            <th>Credit</th>
+            <td>${sessionScope.user.credit}</td>
+        </tr>
+        <tr>
+            <th scope="row">Nouveau mot de passe</th>
+            <td><input name="newPasswordEdited" class="form-control" type="password"></td>
+            <th scope="row">Confirmation</th>
+            <td><input name="confirmNewPasswordEdited" class="form-control" type="password"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="text-align: center">
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#modalCenterSave">
+            Enregistrer
+        </button>
+        <button type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#modalCenterSupp">
+            Supprimer profil
+        </button>
+    </div>
+    <!-- Modal save -->
+    <div class="modal fade" id="modalCenterSave">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Confirmation</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sur de vouloir enregistrer le profil ?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Enregistrer
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div style="text-align: center">
-    <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#modalCenterSave">
-        Enregistrer
-    </button>
-    <button type="button" class="btn btn-danger" data-toggle="modal"
-            data-target="#modalCenterSupp">
-        Supprimer profil
-    </button>
-</div>
-
+</form>
 <!-- Modal supp -->
 <div class="modal fade" id="modalCenterSupp">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -172,33 +199,6 @@
                 <form action="<%=request.getContextPath()%>/ServletProfil" method="post">
                     <button type="submit" class="btn btn-danger" href="/ServletProfil">
                         Supprimer
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Fermer
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal save -->
-<div class="modal fade" id="modalCenterSave">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Confirmation</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Etes-vous sur de vouloir enregistrer le profil ?
-            </div>
-            <div class="modal-footer">
-                <form action="<%=request.getContextPath()%>/edit" method="post">
-                    <button type="submit" class="btn btn-primary">
-                        Enregistrer
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Fermer

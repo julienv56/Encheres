@@ -36,7 +36,6 @@ public class ServletAjoutArticle extends HttpServlet {
             LocalDate date_fin_enchere = LocalDate.parse(req.getParameter("date_fin_enchere"));
             int prix_initial = Integer.parseInt(req.getParameter("miseAPrix"));
             HttpSession session = req.getSession();
-            System.out.println(session.getAttribute("user"));
             int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
             int categorySelected = Integer.parseInt(req.getParameter("categorie"));
             int no_categorie = categorySelected;

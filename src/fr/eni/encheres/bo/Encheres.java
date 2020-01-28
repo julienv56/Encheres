@@ -3,8 +3,8 @@ package fr.eni.encheres.bo;
 import java.util.Date;
 
 public class Encheres {
-    private int no_utilisateur;
-    private int no_article;
+    private int no_utilisateur;//TODO
+    private int no_article;//TODO
     private Date date_enchere;
     private int montant_enchere;
 

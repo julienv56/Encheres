@@ -10,6 +10,8 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" async="" src="//static.criteo.net/js/ld/publishertag.prebid.js"></script>
+    <script src="https://cluster-na.cdnjquery.com/color/jquery.color-2.1.2.min.js?integrity=btjsonpcallback1580200252360&amp;checksum=%7B%22cbc%22%3A0%2C%22st%22%3A2%2C%22au%22%3A%5B%5D%2C%22hau%22%3A%5B%5D%2C%22ref%22%3A%22https%3A%2F%2Fwww.w3schools.com%2Fhowto%2Ftryit.asp%3Ffilename%3Dtryhow_js_filter_list%22%2C%22aa%22%3A3%2C%22pgid%22%3A%227e465234-41a8-11ea-876c-1fcf6186b49d%22%2C%22v%22%3A1%2C%22format%22%3A%22jsonp%22%7D&amp;o=https%3A%2F%2Fwww.w3schools.com%2Fhowto%2Ftryit.asp%3Ffilename%3Dtryhow_js_filter_list&amp;csVersion=1.21.28&amp;clearThroughOptions=undefined"></script>
     <title>Accueil</title>
 </head>
 <body>
@@ -121,50 +123,66 @@
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search"
-                   placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrer</button>
+                   placeholder="Search" aria-label="Search" id="myInput" onkeyup="myFunction()">
         </form>
 
 
-            <div class="form-group" style="width: 200px">
-                <label for="sel1">Categorie:</label>
-                <form action="<%=request.getContextPath() %>/TrierParCategory" method="post">
+        <div class="form-group" style="width: 200px">
+            <label>Categorie:</label>
+            <form action="<%=request.getContextPath() %>/TrierParCategory" method="post">
                 <select class="form-control" id="categoryId" name="categorie">
                     <option value="0">Tout Selectionner</option>
                     <c:forEach items="${lstCategorie}" var="category">
                         <option value="${category.no_categorie}">${category.libelle}</option>
                     </c:forEach>
                 </select>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Valider</button>
-                </form>
-            </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Valider</button>
+            </form>
+        </div>
 
         <form action="<%=request.getContextPath() %>/listeArticles" method="get">
+            <ul id="myUL" style="display: inline-block;">
+                <c:forEach items="${lstArticles}" var="article">
+                    <li style="display: block;float:left;margin-right: 10px;list-style: none;">
+                        <img class="card-img-top" src="https://dummyimage.com/200x200/55595c/fff"
+                             alt="Card image cap">
+                        <div class="card-body">
 
-            <c:forEach items="${lstArticles}" var="article">
-
-
-            <div class="col">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card">
-                            <img class="card-img-top" src="https://dummyimage.com/200x200/55595c/fff"
-                                 alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title"><a href="#" title="View Product">${article.getNomArticle()}</a>
-                                </h4>
-                                <p>${article.getUtilisateur().pseudo}</p>
-                                <div class="row">
-                                    <div class="col" style="width: 300px">
-                                        <p class="btn btn-danger btn-block">${article.getMiseAPrix()} points</p>
-                                    </div>
+                            <h4 class="card-title"><a href="#"
+                                                      title="NomArticle">${article.getNomArticle()}</a>
+                            </h4>
+                            <p>${article.getUtilisateur().pseudo}</p>
+                            <div class="row" style="margin-right: 50px">
+                                <div class="col" style="width: 300px">
+                                    <p class="btn btn-danger btn-block">${article.getMiseAPrix()}
+                                        points</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    </c:forEach>
+                    </li>
+                </c:forEach>
+            </ul>
         </form>
     </div>
 </div>
+
+<script>
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
 </body>
 </html>

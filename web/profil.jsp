@@ -11,8 +11,6 @@
     <title>Profil</title>
 </head>
 <body>
-
-
 <c:choose>
     <c:when test="${!empty sessionScope.user}">
         <div>

@@ -52,7 +52,7 @@ public class ServletEditProfil extends HttpServlet {
 
         } catch (NumberFormatException ignored) {
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/profilEdit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/profil.jsp");
         rd.forward(request, response);
     }
 

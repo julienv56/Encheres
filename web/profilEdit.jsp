@@ -102,46 +102,53 @@
     </div>
 </nav>
 <form action="<%=request.getContextPath()%>/edit" method="post">
-    <table class="table">
+    <table id="table1" class="table">
         <tbody>
         <tr>
             <th scope="row">Pseudo</th>
-            <td><input name="pseudoEdited" class="form-control" type="text" value="${sessionScope.user.pseudo}"></td>
+            <td><input required="required" name="pseudoEdited" class="form-control" type="text"
+                       value="${sessionScope.user.pseudo}"></td>
             <th scope="row">Nom</th>
-            <td><input name="nomEdited" class="form-control" type="text" value="${sessionScope.user.nom}"></td>
+            <td><input required="required" name="nomEdited" class="form-control" type="text"
+                       value="${sessionScope.user.nom}"></td>
         </tr>
         <tr>
             <th scope="row">Prenom</th>
-            <td><input name="prenomEdited" class="form-control" type="text" value="${sessionScope.user.prenom}"></td>
+            <td><input required="required" name="prenomEdited" class="form-control" type="text"
+                       value="${sessionScope.user.prenom}"></td>
             <th scope="row">Email</th>
-            <td><input name="emailEdited" class="form-control" type="text" value="${sessionScope.user.email}"></td>
+            <td><input required="required" name="emailEdited" class="form-control" type="text"
+                       value="${sessionScope.user.email}"></td>
         </tr>
         <tr>
             <th scope="row">Telephone</th>
-            <td><input name="telephoneEdited" class="form-control" type="text" value="${sessionScope.user.telephone}">
+            <td><input required="required" name="telephoneEdited" class="form-control" type="text"
+                       value="${sessionScope.user.telephone}">
             </td>
             <th scope="row">Rue</th>
-            <td><input name="rueEdited" class="form-control" type="text" value="${sessionScope.user.rue}"></td>
+            <td><input required="required" name="rueEdited" class="form-control" type="text"
+                       value="${sessionScope.user.rue}"></td>
         </tr>
         <tr>
             <th scope="row">Code Postal</th>
-            <td><input name="codePostalEdited" class="form-control" type="text"
+            <td><input required="required" name="codePostalEdited" class="form-control" type="text"
                        value="${sessionScope.user.code_postal}">
             </td>
             <th scope="row">Ville</th>
-            <td><input name="villeEdited" class="form-control" type="text" value="${sessionScope.user.ville}"></td>
+            <td><input required="required" name="villeEdited" class="form-control" type="text"
+                       value="${sessionScope.user.ville}"></td>
         </tr>
         <tr>
             <th scope="row">Mot de passe actuel</th>
-            <td><input name="password" class="form-control" type="password"></td>
+            <td><input required="required" name="password" class="form-control" type="password"></td>
             <th>Credit</th>
             <td>${sessionScope.user.credit}</td>
         </tr>
         <tr>
             <th scope="row">Nouveau mot de passe</th>
-            <td><input name="newPasswordEdited" class="form-control" type="password"></td>
+            <td><input required="required" name="newPasswordEdited" class="form-control" type="password"></td>
             <th scope="row">Confirmation</th>
-            <td><input name="confirmNewPasswordEdited" class="form-control" type="password"></td>
+            <td><input required="required" name="confirmNewPasswordEdited" class="form-control" type="password"></td>
         </tr>
         </tbody>
     </table>

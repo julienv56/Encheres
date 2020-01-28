@@ -139,16 +139,41 @@
                        value="${sessionScope.user.ville}"></td>
         </tr>
         <tr>
-            <th scope="row">Mot de passe actuel</th>
+            <th scope="row" id="actualPwd">Mot de passe actuel</th>
             <td><input required="required" name="password" class="form-control" type="password"></td>
+            <c:if test="${!empty sessionScope.message}" var="erreur">
+                <script>
+                    alert('Mot de passe incorrect');
+                    document.getElementById("actualPwd").style.backgroundColor = "red";
+                    document.getElementById("actualPwd").style.color = "white";
+                </script>
+            </c:if>
+
             <th>Credit</th>
             <td>${sessionScope.user.credit}</td>
         </tr>
         <tr>
             <th scope="row">Nouveau mot de passe</th>
-            <td><input required="required" name="newPasswordEdited" class="form-control" type="password"></td>
+            <td><input required="required" name="newPasswordEdited" class="form-control" type="password"
+                       id="newPassword"></td>
             <th scope="row">Confirmation</th>
-            <td><input required="required" name="confirmNewPasswordEdited" class="form-control" type="password"></td>
+            <td><input required="required" name="confirmNewPasswordEdited" class="form-control" type="password"
+                       id="confirmPassword"></td>
+            <script>
+                var password = document.getElementById("newPassword")
+                    , confirm_password = document.getElementById("confirmPassword");
+
+                function validatePassword() {
+                    if (password.value !== confirm_password.value) {
+                        confirm_password.setCustomValidity("Le mot de de passe ne correspond pas");
+                    } else {
+                        confirm_password.setCustomValidity('');
+                    }
+                }
+
+                password.onchange = validatePassword;
+                confirm_password.onkeyup = validatePassword;
+            </script>
         </tr>
         </tbody>
     </table>
@@ -173,7 +198,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Etes-vous sur de vouloir enregistrer le profil ?
+                    Etes-vous sur de vouloir enregistrer le profil ? <br>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">

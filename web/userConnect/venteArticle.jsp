@@ -22,6 +22,8 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a href="/Encheres/" class="navbar-left"><img src="https://image.flaticon.com/icons/svg/345/345629.svg"
+                                                 style="height: 50px;width: 50px"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#myNavbar">
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -67,7 +69,7 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
 
 
-                <label for="sel1">Categorie:</label>
+                <label for="categoryId">Categorie:</label>
                 <select class="form-control" id="categoryId" name="categorie">
                     <option value="">Selectionner :</option>
                     <c:forEach items="${lstCategorie}" var="category">

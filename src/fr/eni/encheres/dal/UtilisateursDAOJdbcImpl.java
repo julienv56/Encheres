@@ -62,11 +62,6 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
-    private Utilisateurs editBuilder(ResultSet rs) throws SQLException {
-        Utilisateurs users = new Utilisateurs();
-        users.setNo_utilisateur(rs.getInt("no_utilisateur"));
-        return users;
-    }
 
     private static final String GETUSERS = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?";
 

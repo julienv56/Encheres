@@ -115,7 +115,7 @@
             </div>
             <div class="jumbotron">
                 <div class="container text-center">
-                    <div name="profil">
+                    <div class="View" name="profil">
                         <c:if test="${!empty sessionScope.user}">
                             <table class="table">
                                 <tbody>

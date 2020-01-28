@@ -50,10 +50,11 @@ public class ServletEditProfil extends HttpServlet {
             UtilisateursManager usersManager = new UtilisateursManager();
             Utilisateurs users = usersManager.modifier(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe);
 
+            session.setAttribute("user", users);
+
         } catch (NumberFormatException ignored) {
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/profil.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("profil.jsp");
     }
 
 }

@@ -156,7 +156,7 @@
                             <form action="<%=request.getContextPath()%>/ServletDetailArticle" method="post">
                                 <div class="row" style="margin-right: 50px">
                                     <div class="col" style="width: 300px">
-                                        <button type="submit" class="btn btn-danger btn-lg btn-block">${article.getMiseAPrix()}
+                                        <button type="submit" class="btn btn-danger btn-lg btn-block" name="noArticle" value="${article.getNoArticle()}">${article.getMiseAPrix()}
                                             points</button>
                                     </div>
                                 </div>

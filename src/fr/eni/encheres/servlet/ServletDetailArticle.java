@@ -18,8 +18,9 @@ public class ServletDetailArticle extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("je suis là");
-        RequestDispatcher rd = req.getRequestDispatcher("Encheres/");
+        int noArticle = Integer.parseInt(req.getParameter("noArticle"));
+        System.out.println(noArticle);
+        RequestDispatcher rd = req.getRequestDispatcher("/userConnect/venteArticle.jsp");
         rd.forward(req, resp);
     }
 }

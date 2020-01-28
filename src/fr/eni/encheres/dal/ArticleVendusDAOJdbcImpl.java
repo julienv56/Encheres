@@ -33,7 +33,7 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
     public List<ArticlesVendus> trierParCategorie(int no_categorie) {
         ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            if (no_categorie == 0){
+            if (no_categorie == 0) {
                 PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_DU_JOUR);
                 ResultSet rs = pstmt.executeQuery();
                 ArticlesVendus article = new ArticlesVendus();
@@ -41,12 +41,12 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
                     article = articleBuilder(rs);
                     listeArticle.add(article);
                 }
-            }else{
+            } else {
                 PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_CATEGORIE);
                 pstmt.setInt(1, no_categorie);
                 ResultSet rs = pstmt.executeQuery();
                 ArticlesVendus article = new ArticlesVendus();
-                while(rs.next()){
+                while (rs.next()) {
                     article = articleBuilder(rs);
                     listeArticle.add(article);
                 }

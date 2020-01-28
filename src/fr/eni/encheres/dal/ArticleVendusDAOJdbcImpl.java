@@ -29,6 +29,12 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
             "AND a.no_categorie = ?";
 
+    private static final String SELECT_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +
+            "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
+            "FROM ARTICLES_VENDUS a " +
+            "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
+            "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
+            "WHERE no_article = ?";
 
     public List<ArticlesVendus> trierParCategorie(int no_categorie) {
         ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
@@ -97,6 +103,23 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
         } catch (Exception e) {
             e.getStackTrace();
         }
+    }
+
+    @Override
+    public ArticlesVendus selectionnerArticleParId(int no_article) {
+        ArticlesVendus article = new ArticlesVendus();
+
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID);
+            pstmt.setInt(1, no_article);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                article = articleBuilder(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return article;
     }
 
     private ArticlesVendus articleBuilder(ResultSet rs) throws SQLException {

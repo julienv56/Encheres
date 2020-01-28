@@ -11,4 +11,6 @@ public interface ArticlesVendusDAO {
     List<ArticlesVendus> listeArticleDuJour();
 
     void insert(ArticlesVendus article);
+
+    ArticlesVendus selectionnerArticleParId(int no_article);
 }

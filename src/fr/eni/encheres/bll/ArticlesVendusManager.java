@@ -7,6 +7,7 @@ import fr.eni.encheres.bo.Utilisateurs;
 import fr.eni.encheres.dal.ArticleVendusDAOJdbcImpl;
 import fr.eni.encheres.dal.ArticlesVendusDAO;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ArticlesVendusManager {
     private ArticlesVendusDAO articlesVendusDAO = new ArticleVendusDAOJdbcImpl();
 
-    public List<ArticlesVendus> selectionnerTousLesArticles() {
+    public List<ArticlesVendus> selectionnerTousLesArticles() throws SQLException {
         return articlesVendusDAO.listeArticleDuJour();
     }
 
@@ -23,7 +24,6 @@ public class ArticlesVendusManager {
         ArticlesVendus article = new ArticlesVendus();
         Utilisateurs user = new Utilisateurs();
         Categories categorie = new Categories();
-
 
         article.setNomArticle(nom_article);
         article.setDescription(description);
@@ -34,6 +34,7 @@ public class ArticlesVendusManager {
         categorie.setNo_categorie(no_categorie);
         article.setUtilisateur(user);
         article.setCategorie(categorie);
+        System.out.println(article);
         this.articlesVendusDAO.insert(article);
         return article;
     }
@@ -42,7 +43,7 @@ public class ArticlesVendusManager {
         return articlesVendusDAO.trierParCategorie(no_categorie);
     }
 
-    public List<ArticlesVendus> listerParFiltre(String achatsSelected) {
+    public List<ArticlesVendus> listerParFiltre(String achatsSelected) throws SQLException {
         return articlesVendusDAO.trierParFiltre(achatsSelected);
     }
 }

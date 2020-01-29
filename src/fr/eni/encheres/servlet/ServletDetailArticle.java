@@ -38,7 +38,5 @@ public class ServletDetailArticle extends HttpServlet {
         }
         RequestDispatcher rd = req.getRequestDispatcher("/userConnect/enchereArticle.jsp");
         rd.forward(req, resp);
-
-
     }
 }

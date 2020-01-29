@@ -23,7 +23,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="/Encheres/" class="navbar-left"><img src="https://image.flaticon.com/icons/svg/345/345629.svg"
-                                                 style="height: 50px;width: 50px"></a>
+                                                          style="height: 50px;width: 50px"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#myNavbar">
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -65,9 +65,9 @@
             <div class="form-group">
                 <label for="article">Article</label>
                 <input type="text" class="form-control" id="article" name="titre" placeholder="titre">
+
                 <label for="exampleFormControlTextarea1" style="padding-top: 10px">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
-
 
                 <label for="categoryId">Categorie:</label>
                 <select class="form-control" id="categoryId" name="categorie">
@@ -76,12 +76,16 @@
                         <option value="${category.no_categorie}" name="selected">${category.libelle}</option>
                     </c:forEach>
                 </select>
+
                 <label for="exampleFormControlFile1" style="padding-top: 10px">Photo de l'article</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+
                 <label for="article" style="padding-top: 10px">Mise à prix</label>
                 <input class="form-control" type="number" name="miseAPrix">
+
                 <label for="article" style="padding-top: 10px">Début de l'enchère</label>
                 <input type="date" class="form-control" name="date_debut_enchere">
+
                 <label for="article" style="padding-top: 10px">Fin de l'enchère</label>
                 <input type="date" class="form-control" name="date_fin_enchere"/>
 
@@ -100,8 +104,6 @@
                                value="<c:out value="${sessionScope.user.ville}"/>" placeholder="Chartres-de-Bretagne">
                     </div>
                 </div>
-
-
                 <button type="submit" class="btn btn-primary">Valider</button>
                 <button type="Reset" class="btn btn-warning">Annuler</button>
             </div>

@@ -5,10 +5,8 @@ import fr.eni.encheres.bo.Categories;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 
 public class RetraitDAOJdbcImpl implements RetraitDAO {
     private static final String SELECT_BY_ID = "SELECT r.no_article as no_article, r.rue as rue, r.code_postal as code_postal, r.ville as ville, nom_article, description, date_debut_encheres, date_fin_encheres, " +
@@ -19,7 +17,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
             "WHERE r.no_article = ?";
 
-
+    private static final String INSERT = "INSERT INTO RETRAITS VALUES (?,?,?,?)";
     @Override
     public Retrait selectionnerArticleParId(int no_article) {
         Retrait retrait = new Retrait();
@@ -46,6 +44,21 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
             e.printStackTrace();
         }
         return retrait;
+    }
+
+    @Override
+    public void insert(ArticlesVendus article, String rueRetrait, String codePostalRetrait, String villeRetrait) {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(INSERT);
+            pstmt.setString(1, String.valueOf(article.getNoArticle()));
+            pstmt.setString(2, rueRetrait);
+            pstmt.setString(3, codePostalRetrait);
+            pstmt.setString(4, villeRetrait);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.getMessage();
+        }
     }
 
     private ArticlesVendus ArticleBuilder(ResultSet rs) throws SQLException {

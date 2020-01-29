@@ -1,7 +1,9 @@
 package fr.eni.encheres.servlet;
 
 import fr.eni.encheres.bll.ArticlesVendusManager;
+import fr.eni.encheres.bll.RetraitManager;
 import fr.eni.encheres.bo.ArticlesVendus;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
 import javax.servlet.RequestDispatcher;
@@ -30,6 +32,7 @@ public class ServletAjoutArticle extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            System.out.println("je suis au début du POST ServletAjoutArticle");
             String nom_article = req.getParameter("titre");
             String description = req.getParameter("description");
             LocalDate date_debut_enchere = LocalDate.parse(req.getParameter("date_debut_enchere"));
@@ -40,14 +43,19 @@ public class ServletAjoutArticle extends HttpServlet {
             int categorySelected = Integer.parseInt(req.getParameter("categorie"));
             int no_categorie = categorySelected;
 
+            String rueRetrait = req.getParameter("rue");
+            String codePostalRetrait = req.getParameter("code_postal");
+            String villeRetrait = req.getParameter("ville");
             ArticlesVendusManager articleManager = new ArticlesVendusManager();
+            System.out.println("Je vais appeler le insert");
             ArticlesVendus article = articleManager.ajouter(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie);
 
+            RetraitManager retraitManager = new RetraitManager();
+            retraitManager.ajouter(article,rueRetrait,codePostalRetrait,villeRetrait);
         } catch (Exception e) {
             e.getMessage();
         }
 
-        RequestDispatcher rd = req.getRequestDispatcher("/userConnect/venteArticle.jsp");
-        rd.forward(req, resp);
+        resp.sendRedirect("ServletListCategorie");
     }
 }

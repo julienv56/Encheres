@@ -11,4 +11,8 @@ public class RetraitManager {
     public Retrait getDetailArticle(int no_article) {
         return retraitDAO.selectionnerArticleParId(no_article);
     }
+
+    public void ajouter(ArticlesVendus article, String rueRetrait, String codePostalRetrait, String villeRetrait) {
+        retraitDAO.insert(article, rueRetrait,codePostalRetrait,villeRetrait);
+    }
 }

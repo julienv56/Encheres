@@ -2,7 +2,6 @@ package fr.eni.encheres.dal;
 
 import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Categories;
-import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
 import java.sql.*;
@@ -76,54 +75,54 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
     }
 
     @Override
-    public List<ArticlesVendus> trierParFiltre(String achatsSelected) {
-        ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
-        try (Connection cnx = ConnectionProvider.getConnection()) {
-            if (achatsSelected == null) {
-                PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_DU_JOUR);
-                ResultSet rs = pstmt.executeQuery();
-                ArticlesVendus article = new ArticlesVendus();
-                while (rs.next()) {
-                    article = articleBuilder(rs);
-                    listeArticle.add(article);
-                }
-            } else {
-                PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_ACHATS);
-//                pstmt.setInt(1, no_categorie);
-                ResultSet rs = pstmt.executeQuery();
-                ArticlesVendus article = new ArticlesVendus();
-                while (rs.next()) {
-                    article = articleBuilder(rs);
-                    listeArticle.add(article);
-                }
-            }
-
-        } catch (Exception e) {
-
+    public List<ArticlesVendus> trierParFiltre(String achatsSelected) throws SQLException {
+        List<ArticlesVendus> result;
+        if(achatsSelected == null) {
+            result = listeTrierParFiltre(SELECT_ARTICLE_DU_JOUR);
+        } else {
+            result = listeTrierParFiltre(LISTER_BY_ACHATS);
         }
-        return listeArticle;
+        return result;
     }
 
-    @Override
-    public List<ArticlesVendus> listeArticleDuJour() {
+    private List<ArticlesVendus> listeTrierParFiltre(String query) throws SQLException {
         ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
-
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_DU_JOUR);
+            PreparedStatement pstmt = cnx.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             ArticlesVendus article = new ArticlesVendus();
             while (rs.next()) {
                 article = articleBuilder(rs);
                 listeArticle.add(article);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return listeArticle;
     }
 
     @Override
+    public List<ArticlesVendus> listeArticleDuJour() throws SQLException {
+        List<ArticlesVendus> result;
+        result = listeTrierParFiltre(SELECT_ARTICLE_DU_JOUR);
+        return result;
+
+    }
+
+    @Override
     public void insert(ArticlesVendus article) {
+/*      ArticlesVendus article = new ArticlesVendus();
+        Utilisateurs user = new Utilisateurs();
+        Categories categorie = new Categories();
+        article.setNomArticle(nom_article);
+        article.setDescription(description);
+        article.setDateDebutEncheres(date_debut_encheres);
+        article.setDateFinEncheres(date_fin_encheres);
+        article.setMiseAPrix(prix_initial);
+        user.setNo_utilisateur(no_utilisateur);
+        categorie.setNo_categorie(no_categorie);
+        article.setUtilisateur(user);
+        article.setCategorie(categorie);
+        this.articlesVendusDAO.insert(article);
+        return article;*/
         try (Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, article.getNomArticle());
@@ -139,7 +138,6 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             if (rs.next()) {
                 article.setNoArticle(rs.getInt(1));
             }
-
         } catch (Exception e) {
             e.getStackTrace();
         }

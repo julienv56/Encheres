@@ -40,8 +40,4 @@ public class ArticlesVendusManager {
     public List<ArticlesVendus> listerParCategorie(int no_categorie) {
         return articlesVendusDAO.trierParCategorie(no_categorie);
     }
-
-    public ArticlesVendus getArticle(int no_article) {
-        return articlesVendusDAO.selectionnerArticleParId(no_article);
-    }
 }

@@ -2,6 +2,7 @@ package fr.eni.encheres.dal;
 
 import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Categories;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
 import java.sql.*;
@@ -34,6 +35,7 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "FROM ARTICLES_VENDUS a " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
+            "JOIN RETRAITS ON r.no_article = r.no_article " +
             "WHERE no_article = ?";
 
     public List<ArticlesVendus> trierParCategorie(int no_categorie) {
@@ -105,23 +107,6 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
         }
     }
 
-    @Override
-    public ArticlesVendus selectionnerArticleParId(int no_article) {
-        ArticlesVendus article = new ArticlesVendus();
-
-        try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_ID);
-            pstmt.setInt(1, no_article);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                article = articleBuilder(rs);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return article;
-    }
-
     private ArticlesVendus articleBuilder(ResultSet rs) throws SQLException {
         ArticlesVendus article = new ArticlesVendus();
         Utilisateurs user = new Utilisateurs();
@@ -140,5 +125,4 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
 
         return article;
     }
-
 }

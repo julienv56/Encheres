@@ -1,7 +1,10 @@
 package fr.eni.encheres.servlet;
 
 import fr.eni.encheres.bll.ArticlesVendusManager;
+import fr.eni.encheres.bll.RetraitManager;
 import fr.eni.encheres.bo.ArticlesVendus;
+import fr.eni.encheres.bo.Retrait;
+import fr.eni.encheres.dal.CategoriesDAOJdbcImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,11 +27,10 @@ public class ServletDetailArticle extends HttpServlet {
 
         int noArticle = Integer.parseInt(req.getParameter("noArticle"));
         try {
-            ArticlesVendusManager articlesVendusmanager = new ArticlesVendusManager();
-            ArticlesVendus article = new ArticlesVendus();
-            article = articlesVendusmanager.getArticle(noArticle);
-
-            req.setAttribute("article", article);
+            RetraitManager retraitManager = new RetraitManager();
+            Retrait retrait = new Retrait();
+            retrait = retraitManager.getDetailArticle(noArticle);
+            req.setAttribute("retrait", retrait);
         } catch (Exception e) {
             e.getMessage();
         }

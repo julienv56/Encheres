@@ -12,5 +12,4 @@ public interface ArticlesVendusDAO {
 
     void insert(ArticlesVendus article);
 
-    ArticlesVendus selectionnerArticleParId(int no_article);
 }

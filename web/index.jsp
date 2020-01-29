@@ -136,59 +136,63 @@
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Filtrer</button>
             </form>
             <form>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label onclick="showAchats()" class="btn btn-primary" for="achats"><input type="radio" id="achats"
-                                                                                              name="option"
-                                                                                              value="achats">
-                        Achats</label>
-                    <label onclick="showVentes()" class="btn btn-primary" for="ventes"><input type="radio" id="ventes"
-                                                                                              name="option"
-                                                                                              value="ventes">
-                        Mes ventes</label>
-                </div>
-                <script>
-                    function showAchats() {
-                        var y = document.getElementById("achatChoices");
-                        var x = document.getElementById("ventesChoices");
-                        if (x.style.display === "block") {
-                            x.style.display = "none";
+                <c:if test="${!empty sessionScope.user}">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label onclick="showAchats()" class="btn btn-primary" for="achats"><input type="radio"
+                                                                                                  id="achats"
+                                                                                                  name="option"
+                                                                                                  value="achats">
+                            Achats</label>
+                        <label onclick="showVentes()" class="btn btn-primary" for="ventes"><input type="radio"
+                                                                                                  id="ventes"
+                                                                                                  name="option"
+                                                                                                  value="ventes">
+                            Mes ventes</label>
+                    </div>
+                    <script>
+                        function showAchats() {
+                            var y = document.getElementById("achatChoices");
+                            var x = document.getElementById("ventesChoices");
+                            if (x.style.display === "block") {
+                                x.style.display = "none";
+                            }
+                            if (y.style.display === "none") {
+                                y.style.display = "block";
+                            } else {
+                                y.style.display = "none";
+                            }
                         }
-                        if (y.style.display === "none") {
-                            y.style.display = "block";
-                        } else {
-                            y.style.display = "none";
-                        }
-                    }
 
-                    function showVentes() {
-                        var y = document.getElementById("ventesChoices");
-                        var x = document.getElementById("achatChoices");
-                        if (x.style.display === "block") {
-                            x.style.display = "none";
+                        function showVentes() {
+                            var y = document.getElementById("ventesChoices");
+                            var x = document.getElementById("achatChoices");
+                            if (x.style.display === "block") {
+                                x.style.display = "none";
+                            }
+                            if (y.style.display === "none") {
+                                y.style.display = "block";
+                            } else {
+                                y.style.display = "none";
+                            }
                         }
-                        if (y.style.display === "none") {
-                            y.style.display = "block";
-                        } else {
-                            y.style.display = "none";
-                        }
-                    }
-                </script>
+                    </script>
 
-                <div style="display: none" id="ventesChoices" class="checkbox">
-                    <label for="ventesEnCours"><input type="checkbox" id="ventesEnCours">Ventes en cours</label>
-                    <label for="ventesNonDeb"><input type="checkbox" id="ventesNonDeb">Ventes non débutées </label>
-                    <label for="ventesTerm"><input type="checkbox"
-                                                   id="ventesTerm">Ventes terminées</label>
-                </div>
-                <div style="display: none; padding-top: 15px" id="achatChoices" class="checkbox">
-                    <label for="encheresOpen"><input type="checkbox" id="encheresOpen">Encheres
-                        ouvertes</label>
-                    <label for="encheresEnCours"><input type="checkbox" id="encheresEnCours">Encheres
-                        en cours</label>
-                    <label for="encheresRemportees"><input type="checkbox"
-                                                           id="encheresRemportees">Encheres
-                        remportées</label>
-                </div>
+                    <div style="display: none" id="ventesChoices" class="checkbox">
+                        <label for="ventesEnCours"><input type="checkbox" id="ventesEnCours">Ventes en cours</label>
+                        <label for="ventesNonDeb"><input type="checkbox" id="ventesNonDeb">Ventes non débutées </label>
+                        <label for="ventesTerm"><input type="checkbox"
+                                                       id="ventesTerm">Ventes terminées</label>
+                    </div>
+                    <div style="display: none; padding-top: 15px" id="achatChoices" class="checkbox">
+                        <label for="encheresOpen"><input type="checkbox" id="encheresOpen">Encheres
+                            ouvertes</label>
+                        <label for="encheresEnCours"><input type="checkbox" id="encheresEnCours">Encheres
+                            en cours</label>
+                        <label for="encheresRemportees"><input type="checkbox"
+                                                               id="encheresRemportees">Encheres
+                            remportées</label>
+                    </div>
+                </c:if>
 
             </form>
         </div>

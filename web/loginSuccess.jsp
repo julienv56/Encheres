@@ -65,9 +65,13 @@
     </div>
 </nav>
 <c:if test="${!empty sessionScope.user}">
-    <p class="succes">Vous êtes connecté(e) avec le pseudo : ${sessionScope.user.pseudo}</p>
+    <blockquote class="blockquote text-center">
+        <p class="mb-0">Vous êtes connecté(e) avec le pseudo :
+            <mark>${sessionScope.user.pseudo}</mark>
+        </p>
+        <footer class="blockquote-footer">Redirection en cours</footer>
+    </blockquote>
 </c:if>
-
 <br>
 </body>
 </html>

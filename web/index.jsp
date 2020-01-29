@@ -38,7 +38,7 @@
                 <li><a data-toggle="modal" data-target="#myModalDeco"><span
                         class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
 
-                <!-- Modal deco -->
+                <!-- Deconnexion -->
                 <div class="modal fade" id="myModalDeco">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -122,7 +122,7 @@
 
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search"
-                   placeholder="filtrer" aria-label="Search" id="myInput" onkeyup="myFunction()">
+                   placeholder="filtrer" aria-label="Search" id="myInput" onkeyup="FiltreParNom()">
         </form>
         <div class="form-group" style="width: 200px">
 
@@ -197,10 +197,13 @@
                         <form action="<%=request.getContextPath()%>/ServletDetailArticle" method="post">
                             <div class="row" style="margin-right: 50px">
                                 <div class="col" style="width: 300px">
-                                    <button type="submit" class="btn btn-danger btn-lg btn-block" name="noArticle"
+
+                                    <button type="submit" <c:if test="${empty sessionScope.user}"> data-toggle="tooltip" title="Veuillez-vous connecter " disabled  </c:if>
+                                            class="btn btn-danger btn-lg btn-block" name="noArticle"
                                             value="${article.getNoArticle()}">${article.getMiseAPrix()}
                                         points
                                     </button>
+
                                 </div>
                             </div>
                         </form>
@@ -212,7 +215,7 @@
 </div>
 
 <script>
-    function myFunction() {
+    function FiltreParNom() {
         var input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();

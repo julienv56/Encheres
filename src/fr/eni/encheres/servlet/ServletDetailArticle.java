@@ -18,6 +18,7 @@ import java.util.List;
 
 @WebServlet("/ServletDetailArticle")
 public class ServletDetailArticle extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
@@ -25,7 +26,6 @@ public class ServletDetailArticle extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 
         int noArticle = Integer.parseInt(req.getParameter("noArticle"));
         try {
@@ -38,5 +38,7 @@ public class ServletDetailArticle extends HttpServlet {
         }
         RequestDispatcher rd = req.getRequestDispatcher("/userConnect/enchereArticle.jsp");
         rd.forward(req, resp);
+
+
     }
 }

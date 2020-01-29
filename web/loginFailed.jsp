@@ -65,6 +65,14 @@
         </div>
     </div>
 </nav>
-<h3>Wrong password or username</h3><br>
+
+<blockquote class="blockquote text-center">
+    <p class="mb-0">Mauvais
+        <mark>nom d'utilisateur</mark>
+        ou
+        <mark>mot de passe</mark>
+    </p>
+    <footer class="blockquote-footer">Redirection en cours</footer>
+</blockquote>
 </body>
 </html>

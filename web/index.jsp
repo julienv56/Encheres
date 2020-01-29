@@ -125,6 +125,9 @@
                    placeholder="filtrer" aria-label="Search" id="myInput" onkeyup="myFunction()">
         </form>
         <div class="form-group" style="width: 200px">
+
+
+            <%--   Categorie--%>
             <label>Categorie:</label>
             <form action="<%=request.getContextPath() %>/TrierParCategory" method="post">
                 <select class="form-control" id="categoryId" name="categorie">
@@ -135,6 +138,9 @@
                 </select>
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Filtrer</button>
             </form>
+            <%--    Categorie--%>
+
+
             <form>
                 <c:if test="${!empty sessionScope.user}">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -207,7 +213,6 @@
                                                   title="NomArticle">${article.getNomArticle()}</a>
                         </h4>
                         <p>${article.getUtilisateur().pseudo}</p>
-                            <%--                            <c:if test="${!empty sessionScope.user}">--%>
                         <form action="<%=request.getContextPath()%>/ServletDetailArticle" method="post">
                             <div class="row" style="margin-right: 50px">
                                 <div class="col" style="width: 300px">

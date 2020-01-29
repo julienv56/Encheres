@@ -18,7 +18,6 @@ import java.util.List;
 
 @WebServlet("/ServletDetailArticle")
 public class ServletDetailArticle extends HttpServlet {
-    HttpSession session = new Http
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);

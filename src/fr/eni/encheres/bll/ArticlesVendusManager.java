@@ -17,8 +17,9 @@ public class ArticlesVendusManager {
     public List<ArticlesVendus> selectionnerTousLesArticles() {
         return articlesVendusDAO.listeArticleDuJour();
     }
+
     public ArticlesVendus ajouter(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres, int prix_initial,
-                                  int no_utilisateur, int no_categorie){
+                                  int no_utilisateur, int no_categorie) {
         ArticlesVendus article = new ArticlesVendus();
         Utilisateurs user = new Utilisateurs();
         Categories categorie = new Categories();
@@ -39,5 +40,9 @@ public class ArticlesVendusManager {
 
     public List<ArticlesVendus> listerParCategorie(int no_categorie) {
         return articlesVendusDAO.trierParCategorie(no_categorie);
+    }
+
+    public List<ArticlesVendus> listerParFiltre(String achatsSelected) {
+        return articlesVendusDAO.trierParFiltre(achatsSelected);
     }
 }

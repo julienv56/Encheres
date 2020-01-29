@@ -3,26 +3,25 @@ package fr.eni.encheres.bo;
 import java.util.Date;
 
 public class Encheres {
-    private int no_utilisateur;//TODO
-    private int no_article;//TODO
+    private Utilisateurs user;
+    private ArticlesVendus article;
     private Date date_enchere;
     private int montant_enchere;
 
-
-    public int getNo_utilisateur() {
-        return no_utilisateur;
+    public Utilisateurs getUser() {
+        return user;
     }
 
-    public void setNo_utilisateur(int no_utilisateur) {
-        this.no_utilisateur = no_utilisateur;
+    public void setUser(Utilisateurs user) {
+        this.user = user;
     }
 
-    public int getNo_article() {
-        return no_article;
+    public ArticlesVendus getArticle() {
+        return article;
     }
 
-    public void setNo_article(int no_article) {
-        this.no_article = no_article;
+    public void setArticle(ArticlesVendus article) {
+        this.article = article;
     }
 
     public Date getDate_enchere() {
@@ -41,11 +40,18 @@ public class Encheres {
         this.montant_enchere = montant_enchere;
     }
 
+    public Encheres(Utilisateurs user, ArticlesVendus article, Date date_enchere, int montant_enchere) {
+        this.user = user;
+        this.article = article;
+        this.date_enchere = date_enchere;
+        this.montant_enchere = montant_enchere;
+    }
+
     @Override
     public String toString() {
-        return "encheres{" +
-                "no_utilisateur=" + no_utilisateur +
-                ", no_article=" + no_article +
+        return "Encheres{" +
+                "user=" + user +
+                ", article=" + article +
                 ", date_enchere=" + date_enchere +
                 ", montant_enchere=" + montant_enchere +
                 '}';

@@ -30,6 +30,15 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
             "AND a.no_categorie = ?";
 
+    private static final String LISTER_BY_ACHATS = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +
+            "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
+            "FROM ARTICLES_VENDUS a " +
+            "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
+            "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie ";
+//            +
+//            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
+//            "AND a.no_categorie = ?";
+
     private static final String SELECT_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +
             "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
             "FROM ARTICLES_VENDUS a " +
@@ -52,6 +61,35 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             } else {
                 PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_CATEGORIE);
                 pstmt.setInt(1, no_categorie);
+                ResultSet rs = pstmt.executeQuery();
+                ArticlesVendus article = new ArticlesVendus();
+                while (rs.next()) {
+                    article = articleBuilder(rs);
+                    listeArticle.add(article);
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+        return listeArticle;
+    }
+
+    @Override
+    public List<ArticlesVendus> trierParFiltre(String achatsSelected) {
+        ArrayList<ArticlesVendus> listeArticle = new ArrayList<>();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            if (achatsSelected == null) {
+                PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE_DU_JOUR);
+                ResultSet rs = pstmt.executeQuery();
+                ArticlesVendus article = new ArticlesVendus();
+                while (rs.next()) {
+                    article = articleBuilder(rs);
+                    listeArticle.add(article);
+                }
+            } else {
+                PreparedStatement pstmt = cnx.prepareStatement(LISTER_BY_ACHATS);
+//                pstmt.setInt(1, no_categorie);
                 ResultSet rs = pstmt.executeQuery();
                 ArticlesVendus article = new ArticlesVendus();
                 while (rs.next()) {

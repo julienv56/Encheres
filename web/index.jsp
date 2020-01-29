@@ -140,9 +140,8 @@
             </form>
             <%--    Categorie--%>
 
-
-            <form>
-                <c:if test="${!empty sessionScope.user}">
+            <c:if test="${!empty sessionScope.user}">
+                <form action="<%=request.getContextPath() %>/TrierParAchats" method="post">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label onclick="showAchats()" class="btn btn-primary" for="achats"><input type="radio"
                                                                                                   id="achats"
@@ -155,52 +154,30 @@
                                                                                                   value="ventes">
                             Mes ventes</label>
                     </div>
-                    <script>
-                        function showAchats() {
-                            var y = document.getElementById("achatChoices");
-                            var x = document.getElementById("ventesChoices");
-                            if (x.style.display === "block") {
-                                x.style.display = "none";
-                            }
-                            if (y.style.display === "none") {
-                                y.style.display = "block";
-                            } else {
-                                y.style.display = "none";
-                            }
-                        }
-
-                        function showVentes() {
-                            var y = document.getElementById("ventesChoices");
-                            var x = document.getElementById("achatChoices");
-                            if (x.style.display === "block") {
-                                x.style.display = "none";
-                            }
-                            if (y.style.display === "none") {
-                                y.style.display = "block";
-                            } else {
-                                y.style.display = "none";
-                            }
-                        }
-                    </script>
 
                     <div style="display: none" id="ventesChoices" class="checkbox">
-                        <label for="ventesEnCours"><input type="checkbox" id="ventesEnCours">Ventes en cours</label>
-                        <label for="ventesNonDeb"><input type="checkbox" id="ventesNonDeb">Ventes non débutées </label>
-                        <label for="ventesTerm"><input type="checkbox"
-                                                       id="ventesTerm">Ventes terminées</label>
+                        <label for="ventesEnCours"><input name="ventesEnCours" type="checkbox" id="ventesEnCours">Ventes
+                            en cours</label>
+                        <label for="ventesNonDeb"><input name="ventesNonDeb" type="checkbox" id="ventesNonDeb">Ventes
+                            non débutées </label>
+                        <label for="ventesTerm"><input name="ventesTerm" type="checkbox" id="ventesTerm">Ventes
+                            terminées</label>
                     </div>
                     <div style="display: none; padding-top: 15px" id="achatChoices" class="checkbox">
-                        <label for="encheresOpen"><input type="checkbox" id="encheresOpen">Encheres
+                        <label for="encheresOpen"><input name="encheresOpen" type="checkbox" id="encheresOpen">Encheres
                             ouvertes</label>
-                        <label for="encheresEnCours"><input type="checkbox" id="encheresEnCours">Encheres
-                            en cours</label>
-                        <label for="encheresRemportees"><input type="checkbox"
+                        <label for="encheresEnCours"><input name="encheresEnCours" type="checkbox" id="encheresEnCours">Encheres
+                            en
+                            cours</label>
+                        <label for="encheresRemportees"><input name="encheresRemportees" type="checkbox"
                                                                id="encheresRemportees">Encheres
                             remportées</label>
                     </div>
-                </c:if>
-
-            </form>
+                    <button type="submit" class="btn btn-primary">
+                        Valider
+                    </button>
+                </form>
+            </c:if>
         </div>
         <ul id="myUL" style="display: inline-block;">
             <c:forEach items="${lstArticles}" var="article">
@@ -245,6 +222,32 @@
             } else {
                 li[i].style.display = "none";
             }
+        }
+    }
+
+    function showAchats() {
+        var y = document.getElementById("achatChoices");
+        var x = document.getElementById("ventesChoices");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        }
+        if (y.style.display === "none") {
+            y.style.display = "block";
+        } else {
+            y.style.display = "none";
+        }
+    }
+
+    function showVentes() {
+        var y = document.getElementById("ventesChoices");
+        var x = document.getElementById("achatChoices");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        }
+        if (y.style.display === "none") {
+            y.style.display = "block";
+        } else {
+            y.style.display = "none";
         }
     }
 </script>

@@ -162,6 +162,9 @@
                             non débutées </label>
                         <label for="ventesTerm"><input name="ventesTerm" type="checkbox" id="ventesTerm">Ventes
                             terminées</label>
+                        <button type="submit" class="btn btn-primary">
+                            Valider
+                        </button>
                     </div>
                     <div style="display: none; padding-top: 15px" id="achatChoices" class="checkbox">
                         <label for="encheresOpen"><input name="encheresOpen" type="checkbox" id="encheresOpen">Encheres
@@ -172,10 +175,11 @@
                         <label for="encheresRemportees"><input name="encheresRemportees" type="checkbox"
                                                                id="encheresRemportees">Encheres
                             remportées</label>
+                        <button type="submit" class="btn btn-primary">
+                            Valider
+                        </button>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        Valider
-                    </button>
+
                 </form>
             </c:if>
         </div>

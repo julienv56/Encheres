@@ -16,7 +16,8 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "FROM ARTICLES_VENDUS a " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
-            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) ";
+            "WHERE  CONVERT(varchar, getdate(), 23) BETWEEN date_debut_encheres AND date_fin_encheres";
+
 
     private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, " +
             "prix_initial, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?)";

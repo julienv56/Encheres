@@ -14,7 +14,8 @@
     <title>Enchères</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+
+<nav class="navbar navbar-inverse st ">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="/Encheres/" class="navbar-left"><img src="https://image.flaticon.com/icons/svg/345/345629.svg"
@@ -29,13 +30,13 @@
             <ul class="nav navbar-nav">
                 <li><a href="/Encheres/">ENI-Enchere</a></li>
                 <c:if test="${!empty sessionScope.user}">
-                    <li><a href="ServletListCategorie">Vendre un article</a></li>
+                    <li><a href="/Encheres/ServletListCategorie">Vendre un article</a></li>
                 </c:if>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
                 <c:if test="${!empty sessionScope.user}">
-                <li><a href="ServletProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                <li><a href="/Encheres/userConnect/profil.jsp"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
                 <li><a data-toggle="modal" data-target="#myModalDeco"><span
                         class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
 

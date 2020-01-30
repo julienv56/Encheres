@@ -151,15 +151,15 @@
                     <dd>${retrait.getArticle().getUtilisateur().getPseudo()}</dd>
                 </dl>  <!-- item-property-hor .// -->
                 <hr>
-                <dl class="param param-inline">
-                    <dt>Ma Proposition:</dt>
-                    <dd>
-                        <input class="form-control" type="number" name="proposition">
-                    </dd>
-                </dl>  <!-- item-property .// -->
-
-                <a href="#" class="btn btn-lg btn-primary text-uppercase">Enchérir</a>
-
+                <form action="<%=request.getContextPath()%>/encheres" method="post">
+                    <dl class="param param-inline">
+                        <dt>Ma Proposition:</dt>
+                        <dd>
+                            <input class="form-control" type="number" name="proposition">
+                        </dd>
+                    </dl>  <!-- item-property .// -->
+                    <button type="submit" class="btn btn-lg btn-primary text-uppercase">Enchérir</button>
+                </form>
             </article> <!-- card-body.// -->
         </aside> <!-- col.// -->
     </div>

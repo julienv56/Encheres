@@ -21,22 +21,37 @@ public class ServletDetailArticle extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        int noArticle = Integer.parseInt(req.getParameter("noArticle"));
+        HttpSession session = req.getSession();
+        int noArticle = ((Retrait) session.getAttribute("retrait")).getArticle().getNoArticle();
         try {
             RetraitManager retraitManager = new RetraitManager();
             Retrait retrait = new Retrait();
             retrait = retraitManager.getDetailArticle(noArticle);
+            session.setAttribute("retrait", retrait);
             req.setAttribute("retrait", retrait);
         } catch (Exception e) {
             e.getMessage();
         }
         RequestDispatcher rd = req.getRequestDispatcher("/userConnect/enchereArticle.jsp");
         rd.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        int noArticle = Integer.parseInt(req.getParameter("noArticle"));
+        try {
+            RetraitManager retraitManager = new RetraitManager();
+            Retrait retrait = new Retrait();
+            retrait = retraitManager.getDetailArticle(noArticle);
+            session.setAttribute("retrait", retrait);
+            req.setAttribute("retrait", retrait);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        RequestDispatcher rd = req.getRequestDispatcher("/userConnect/enchereArticle.jsp");
+        rd.forward(req, resp);
+
     }
 }

@@ -1,12 +1,16 @@
 package fr.eni.encheres.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Encheres {
     private Utilisateurs user;
     private ArticlesVendus article;
     private Date date_enchere;
     private int montant_enchere;
+
+    public Encheres() {
+
+    }
 
     public Utilisateurs getUser() {
         return user;
@@ -21,6 +25,7 @@ public class Encheres {
     }
 
     public void setArticle(ArticlesVendus article) {
+
         this.article = article;
     }
 

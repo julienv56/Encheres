@@ -38,6 +38,7 @@ public class ServletEditProfil extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
+            int credit = ((Utilisateurs) session.getAttribute("user")).getCredit();
             pseudo = request.getParameter("pseudoEdited");
             nom = request.getParameter("nomEdited");
             prenom = request.getParameter("prenomEdited");
@@ -57,7 +58,7 @@ public class ServletEditProfil extends HttpServlet {
                 rd.forward(request, response);
             }
             UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = usersManager.modifier(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe);
+            Utilisateurs users = usersManager.modifier(no_utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe, credit);
             session.setAttribute("user", users);
 
         } catch (NumberFormatException ignored) {

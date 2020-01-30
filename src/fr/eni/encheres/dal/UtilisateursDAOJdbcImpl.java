@@ -39,7 +39,7 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
         }
     }
 
-    private static final String EDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?;";
+    private static final String EDIT = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ? WHERE no_utilisateur = ?;";
 
     public void edit(Utilisateurs users) {
         try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -53,7 +53,8 @@ public class UtilisateursDAOJdbcImpl implements UtilisateursDAO {
             pstmt.setString(7, users.getCode_postal());
             pstmt.setString(8, users.getVille());
             pstmt.setString(9, users.getMot_de_passe());
-            pstmt.setInt(10, users.getNo_utilisateur());
+            pstmt.setInt(10, users.getCredit());
+            pstmt.setInt(11, users.getNo_utilisateur());
 
             pstmt.executeUpdate();
 

@@ -9,9 +9,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class RetraitDAOJdbcImpl implements RetraitDAO {
-    private static final String SELECT_BY_ID = "SELECT r.no_article as no_article, r.rue as rue, r.code_postal as code_postal, r.ville as ville, nom_article, description, date_debut_encheres, date_fin_encheres, " +
-            "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
-            "FROM RETRAITS r " +
+    private static final String SELECT_BY_ID = "SELECT r.no_article as no_article, r.rue as rue, r.code_postal as code_postal, r.ville as ville, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle FROM RETRAITS r " +
             "JOIN ARTICLES_VENDUS a ON a.no_article = r.no_article " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +

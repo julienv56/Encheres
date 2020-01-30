@@ -46,4 +46,13 @@ public class ArticlesVendusManager {
     public List<ArticlesVendus> listerParFiltre(String achatsSelected) throws SQLException {
         return articlesVendusDAO.trierParFiltre(achatsSelected);
     }
+
+    public ArticlesVendus modifierPrixVente(int prixVente, int noArt) throws SQLException {
+        ArticlesVendus articlesVendus = new ArticlesVendus();
+        articlesVendus.setPrixVente(prixVente);
+        articlesVendus.setNoArticle(noArt);
+
+        this.articlesVendusDAO.insertPrix(articlesVendus);
+        return articlesVendus;
+    }
 }

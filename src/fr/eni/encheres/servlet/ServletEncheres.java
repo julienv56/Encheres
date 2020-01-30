@@ -65,13 +65,24 @@ public class ServletEncheres extends HttpServlet {
                 UtilisateursManager usersManager = new UtilisateursManager();
                 Utilisateurs users = usersManager.modifier(no_utilisateur, pseudo, prenom, nom, email, telephone, rue, code_postal, ville, mot_de_passe, credit);
                 EncheresManager encheresManager = new EncheresManager();
-                //int noArt = ((Retrait) session.getAttribute("retrait")).getArticle().getNoArticle();
                 ArticlesVendus art = ((Retrait) session.getAttribute("retrait")).getArticle();
                 Utilisateurs user = ((Utilisateurs) session.getAttribute("user"));
-                int noUser = users.getNo_utilisateur();
                 Date date = new Date(System.currentTimeMillis());
                 Encheres encheres = encheresManager.ajouter(user, art, date, propositionInt);
+                System.out.println(((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente());
+                if (((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente() == 0) {
+                    ((Retrait) session.getAttribute("retrait")).getArticle().setPrixVente(propositionInt);
+                    System.out.println(((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente());
+                    int noArt = ((Retrait) session.getAttribute("retrait")).getArticle().getNoArticle();
+                    ArticlesVendusManager articlesVendusManager = new ArticlesVendusManager();
+                    ArticlesVendus articlesVendus = articlesVendusManager.modifierPrixVente(propositionInt, noArt);
+                }
+//                System.out.println("jesuisla");
+//                System.out.println(encheresManager.selectionnerArticle(art));
+//                System.out.println("jenysuisplus");
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

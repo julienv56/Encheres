@@ -25,4 +25,7 @@ public class EncheresManager {
         return encheres;
     }
 
+    public Encheres selectionnerArticle(ArticlesVendus articlesVendus) throws SQLException {
+        return encheresDAO.getEnchere(articlesVendus);
+    }
 }

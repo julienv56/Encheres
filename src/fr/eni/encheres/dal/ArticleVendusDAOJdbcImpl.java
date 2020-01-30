@@ -77,7 +77,7 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
     @Override
     public List<ArticlesVendus> trierParFiltre(String achatsSelected) throws SQLException {
         List<ArticlesVendus> result;
-        if(achatsSelected == null) {
+        if (achatsSelected == null) {
             result = listeTrierParFiltre(SELECT_ARTICLE_DU_JOUR);
         } else {
             result = listeTrierParFiltre(LISTER_BY_ACHATS);
@@ -160,5 +160,19 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
         categorie.setLibelle(rs.getString("c_libelle"));
 
         return article;
+    }
+
+    private static final String INSERT_PRIX = "UPDATE ARTICLES_VENDUS SET prix_vente = ? WHERE no_article = ?";
+
+    public void insertPrix(ArticlesVendus articlesVendus) throws SQLException {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(INSERT_PRIX);
+            pstmt.setInt(1, articlesVendus.getPrixVente());
+            pstmt.setInt(2, articlesVendus.getNoArticle());
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

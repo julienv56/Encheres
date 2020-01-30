@@ -1,11 +1,10 @@
 package fr.eni.encheres.dal;
 
+import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Encheres;
+import fr.eni.encheres.bo.Utilisateurs;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class EncheresDAOJdbcImpl implements EncheresDAO {
 
@@ -22,5 +21,30 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
             pstmt.executeUpdate();
         }
     }
+
+    private static final String GET = "SELECT * FROM ENCHERES WHERE no_article = ?";
+
+    public Encheres getEnchere(ArticlesVendus articlesVendus) throws SQLException {
+        Encheres encheres = new Encheres();
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(GET);
+            pstmt.setInt(1, articlesVendus.getNoArticle());
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                encheres = encheresBuilder(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return encheres;
+    }
+
+    private Encheres encheresBuilder(ResultSet rs) throws SQLException {
+        Encheres encheres = new Encheres();
+        encheres.getArticle().setNoArticle(rs.getInt("no_article"));
+        //encheres.getUser().setNo_utilisateur();
+        return encheres;
+    }
+
 }
 

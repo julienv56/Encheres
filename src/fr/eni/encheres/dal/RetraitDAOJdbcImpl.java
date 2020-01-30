@@ -70,6 +70,7 @@ public class RetraitDAOJdbcImpl implements RetraitDAO {
         article.setDateDebutEncheres(rs.getDate("date_debut_encheres").toLocalDate());
         article.setDateFinEncheres(rs.getDate("date_fin_encheres").toLocalDate());
         article.setMiseAPrix(rs.getInt("prix_initial"));
+        article.setPrixVente(rs.getInt("prix_vente"));
         user.setNo_utilisateur(rs.getInt("a_no_utilisateur"));
         user.setPseudo(rs.getString("pseudo"));
         categorie.setNo_categorie(rs.getInt("a_no_categorie"));

@@ -25,7 +25,7 @@ public class ServletProfil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
-            response.sendRedirect("profil.jsp");
+            response.sendRedirect("userConnect/profil.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

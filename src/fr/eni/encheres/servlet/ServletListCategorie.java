@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+//@WebServlet(name="/ServletListCategorie", urlPatterns = "/userConnect/venteArticle.jsp")
 @WebServlet("/ServletListCategorie")
+
 public class ServletListCategorie extends HttpServlet {
     public static final long serialVersionUID = 1L;
 

@@ -22,29 +22,20 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
         }
     }
 
-    private static final String GET = "SELECT * FROM ENCHERES WHERE no_article = ?";
+    private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 
-    public Encheres getEnchere(ArticlesVendus articlesVendus) throws SQLException {
-        Encheres encheres = new Encheres();
+    public void updateEnchere(Encheres encheres) throws SQLException {
         try (Connection cnx = ConnectionProvider.getConnection()) {
-            PreparedStatement pstmt = cnx.prepareStatement(GET);
-            pstmt.setInt(1, articlesVendus.getNoArticle());
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                encheres = encheresBuilder(rs);
-            }
-        } catch (SQLException e) {
+            PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+            pstmt.setInt(1, encheres.getUser().getNo_utilisateur());
+            pstmt.setDate(2, encheres.getDate_enchere());
+            pstmt.setInt(3, encheres.getMontant_enchere());
+            pstmt.setInt(4, encheres.getArticle().getNoArticle());
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return encheres;
     }
-
-    private Encheres encheresBuilder(ResultSet rs) throws SQLException {
-        Encheres encheres = new Encheres();
-        encheres.getArticle().setNoArticle(rs.getInt("no_article"));
-        //encheres.getUser().setNo_utilisateur();
-        return encheres;
-    }
-
 }
 

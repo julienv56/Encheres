@@ -68,18 +68,19 @@ public class ServletEncheres extends HttpServlet {
                 ArticlesVendus art = ((Retrait) session.getAttribute("retrait")).getArticle();
                 Utilisateurs user = ((Utilisateurs) session.getAttribute("user"));
                 Date date = new Date(System.currentTimeMillis());
-                Encheres encheres = encheresManager.ajouter(user, art, date, propositionInt);
-                System.out.println(((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente());
+                int noArt = ((Retrait) session.getAttribute("retrait")).getArticle().getNoArticle();
+                ArticlesVendusManager articlesVendusManager = new ArticlesVendusManager();
                 if (((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente() == 0) {
-                    ((Retrait) session.getAttribute("retrait")).getArticle().setPrixVente(propositionInt);
-                    System.out.println(((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente());
-                    int noArt = ((Retrait) session.getAttribute("retrait")).getArticle().getNoArticle();
-                    ArticlesVendusManager articlesVendusManager = new ArticlesVendusManager();
+
                     ArticlesVendus articlesVendus = articlesVendusManager.modifierPrixVente(propositionInt, noArt);
+                    Encheres encheres = encheresManager.ajouter(user, art, date, propositionInt);
+
+                } else if (((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente() < propositionInt) {
+                    ArticlesVendus articlesVendus = articlesVendusManager.modifierPrixVente(propositionInt, noArt);
+                    Encheres encheresUpdate = encheresManager.modifierEnchere(user, date, propositionInt, art);
+                } else {
+                    System.out.println("no");
                 }
-//                System.out.println("jesuisla");
-//                System.out.println(encheresManager.selectionnerArticle(art));
-//                System.out.println("jenysuisplus");
             }
 
 

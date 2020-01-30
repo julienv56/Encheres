@@ -25,7 +25,14 @@ public class EncheresManager {
         return encheres;
     }
 
-    public Encheres selectionnerArticle(ArticlesVendus articlesVendus) throws SQLException {
-        return encheresDAO.getEnchere(articlesVendus);
+    public Encheres modifierEnchere(Utilisateurs user, Date date_enchere, int montant_enchere, ArticlesVendus art) throws SQLException {
+        Encheres encheres = new Encheres();
+        encheres.setUser(user);
+        encheres.setDate_enchere(date_enchere);
+        encheres.setMontant_enchere(montant_enchere);
+        encheres.setArticle(art);
+
+        this.encheresDAO.updateEnchere(encheres);
+        return encheres;
     }
 }

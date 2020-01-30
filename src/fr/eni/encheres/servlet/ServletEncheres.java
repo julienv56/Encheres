@@ -7,7 +7,6 @@ import fr.eni.encheres.bo.ArticlesVendus;
 import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
-import javafx.animation.KeyFrame;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,19 +45,15 @@ public class ServletEncheres extends HttpServlet {
             String mot_de_passe = ((Utilisateurs) session.getAttribute("user")).getMot_de_passe();
             int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
 
-            int prix = ((Retrait) session.getAttribute("retrait")).getArticle().getMiseAPrix();
+            int prix = ((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente();
             String proposition = request.getParameter("proposition");
             int propositionInt = Integer.parseInt(proposition);
-            System.out.println(oldCredit);
-            System.out.println(proposition);
-            System.out.println(prix);
 
-//            check si user peut encherir
             if (oldCredit < propositionInt) {
                 System.out.println("Credit inférieur à la proposition");
             } else if (oldCredit < prix) {
                 System.out.println("Fond insuffisant");
-            } else if (propositionInt < prix) {
+            } else if (propositionInt <= prix) {
                 System.out.println("Proposition insuffisante");
             } else {
                 int credit = (oldCredit - propositionInt);
@@ -77,12 +72,12 @@ public class ServletEncheres extends HttpServlet {
 
                 } else if (((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente() < propositionInt) {
                     ArticlesVendus articlesVendus = articlesVendusManager.modifierPrixVente(propositionInt, noArt);
+                    ArticlesVendus crediterOld = encheresManager.crediterOld(art);
                     Encheres encheresUpdate = encheresManager.modifierEnchere(user, date, propositionInt, art);
                 } else {
                     System.out.println("no");
                 }
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -37,5 +37,21 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
             e.printStackTrace();
         }
     }
+
+    private static final String CREDITER = "UPDATE UTILISATEURS " +
+            "SET credit = credit + montant_enchere " +
+            "FROM UTILISATEURS JOIN ENCHERES E on UTILISATEURS.no_utilisateur = E.no_utilisateur " +
+            "WHERE no_article = ?";
+
+    public void crediter(ArticlesVendus articlesVendus) throws SQLException {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = cnx.prepareStatement(CREDITER);
+            pstmt.setInt(1, articlesVendus.getNoArticle());
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -35,4 +35,9 @@ public class EncheresManager {
         this.encheresDAO.updateEnchere(encheres);
         return encheres;
     }
+
+    public ArticlesVendus crediterOld(ArticlesVendus articlesVendus) throws SQLException {
+        this.encheresDAO.crediter(articlesVendus);
+        return articlesVendus;
+    }
 }

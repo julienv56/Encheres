@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script
@@ -67,11 +67,81 @@
                 </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
-                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
+                <li><a data-toggle="modal" data-target="#myModalRegister"><span
+                        class="glyphicon glyphicon-log-in"></span>
                     S'inscrire</a></li>
                 <li>
                 <li><a data-toggle="modal" data-target="#myModalCo"><span
                         class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
+
+                <!-- Modal register -->
+                <div class="modal fade" id="myModalRegister">
+                    <div class="modal-dialog modal-dialog-centered" role="form">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Enregistrement</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form class="form-group" action="<%=request.getContextPath()%>/register" method="post">
+                                <div class="container register-form">
+                                    <div class="form">
+                                        <div class="form-content">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Pseudo"
+                                                               name="pseudo"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Prenom"
+                                                               name="prenom"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Nom"
+                                                               name="nom"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Email"
+                                                               name="email"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Telephone"
+                                                               name="telephone"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Rue"
+                                                               name="rue"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Code postal" name="codePostal"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Ville"
+                                                               name="ville"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control"
+                                                               placeholder="Mot de passe" name="MotDePasse"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">S'enregistrer</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Fermer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Modal connexion -->
                 <div class="modal fade" id="myModalCo">

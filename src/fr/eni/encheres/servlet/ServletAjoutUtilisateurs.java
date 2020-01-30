@@ -48,16 +48,14 @@ public class ServletAjoutUtilisateurs extends HttpServlet {
             codePostal = request.getParameter("codePostal");
             ville = request.getParameter("ville");
             mot_de_passe = request.getParameter("MotDePasse");
-            credit = Integer.parseInt(request.getParameter("credit"));
-            administrateur = Boolean.parseBoolean(request.getParameter("administrateur"));
 
 
             UtilisateursManager usersManager = new UtilisateursManager();
-            Utilisateurs users = usersManager.ajouter(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe, credit, false);
+            Utilisateurs users = usersManager.ajouter(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, mot_de_passe, 0, false);
 
         } catch (NumberFormatException ignored) {
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/login");
         rd.forward(request, response);
     }
 }

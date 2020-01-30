@@ -33,5 +33,4 @@ public class FiltreVenteArticle implements Filter {
             rd.forward(req, resp);
         }
     }
-
 }

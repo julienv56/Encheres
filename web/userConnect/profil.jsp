@@ -1,64 +1,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../entete.jsp" %>
-            <div class="jumbotron">
-                <div class="container text-center">
-                    <h3>Profil de ${sessionScope.user.pseudo}</h3>
-                </div>
-            </div>
-            <div class="jumbotron">
-                <div class="container text-center">
-                    <div class="View" name="profil">
-                        <c:if test="${!empty sessionScope.user}">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th scope="row">Pseudo</th>
-                                    <td>${sessionScope.user.pseudo}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Nom</th>
-                                    <td>${sessionScope.user.nom}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Prenom</th>
-                                    <td>${sessionScope.user.prenom}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Email</th>
-                                    <td>${sessionScope.user.email}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Telephone</th>
-                                    <td>${sessionScope.user.telephone}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rue</th>
-                                    <td>${sessionScope.user.rue}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Code Postal</th>
-                                    <td>${sessionScope.user.code_postal}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Ville</th>
-                                    <td>${sessionScope.user.ville}</td>
-                                </tr>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h3>Profil de ${sessionScope.user.pseudo}</h3>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="container text-center">
+        <div class="View" name="profil">
+            <c:if test="${!empty sessionScope.user}">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Pseudo</th>
+                        <td>${sessionScope.user.pseudo}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nom</th>
+                        <td>${sessionScope.user.nom}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Prenom</th>
+                        <td>${sessionScope.user.prenom}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>${sessionScope.user.email}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Telephone</th>
+                        <td>${sessionScope.user.telephone}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rue</th>
+                        <td>${sessionScope.user.rue}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Code Postal</th>
+                        <td>${sessionScope.user.code_postal}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ville</th>
+                        <td>${sessionScope.user.ville}</td>
+                    </tr>
 
-                                </tbody>
-                            </table>
-                            <form action="<%=request.getContextPath()%>/userConnect/profilEdit.jsp" method="post">
-                                <div style="text-align: left">
-                                    <button type="submit" class="btn btn-primary">
-                                        Editer le profil
-                                    </button>
-                                </div>
-                            </form>
-                        </c:if>
+                    </tbody>
+                </table>
+                <form action="<%=request.getContextPath()%>/userConnect/profilEdit.jsp" method="post">
+                    <div style="text-align: left">
+                        <button type="submit" class="btn btn-primary">
+                            Editer le profil
+                        </button>
                     </div>
-                </div>
-            </div>
+                </form>
+            </c:if>
         </div>
-<%@include file="../footer.jsp"%>
+    </div>
+</div>
+</div>
+<%@include file="../footer.jsp" %>
 
 <%--    </c:when>--%>
 <%--    <c:otherwise>--%>

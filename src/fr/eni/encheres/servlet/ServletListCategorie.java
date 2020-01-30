@@ -9,10 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-//@WebServlet(name="/ServletListCategorie", urlPatterns = "/userConnect/venteArticle.jsp")
+
 @WebServlet("/ServletListCategorie")
 
 public class ServletListCategorie extends HttpServlet {
@@ -24,20 +25,26 @@ public class ServletListCategorie extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            CategoriesManager categorieManager = new CategoriesManager();
-            List<Categories> listeCategorie;
-            listeCategorie = categorieManager.selectionnerToutesLesCategories();
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null)
+        {
+            RequestDispatcher rd = req.getRequestDispatcher("/connectToi.jsp");
+            rd.forward(req, resp);
+        }else {
+            try {
+                CategoriesManager categorieManager = new CategoriesManager();
+                List<Categories> listeCategorie;
+                listeCategorie = categorieManager.selectionnerToutesLesCategories();
 
-            req.setAttribute("lstCategorie", listeCategorie);
+                req.setAttribute("lstCategorie", listeCategorie);
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            RequestDispatcher rd = req.getRequestDispatcher("/userConnect/venteArticle.jsp");
+            rd.forward(req, resp);
         }
-        RequestDispatcher rd = req.getRequestDispatcher("/userConnect/venteArticle.jsp");
-        rd.forward(req, resp);
-
     }
 
     @Override

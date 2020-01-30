@@ -67,7 +67,7 @@
 </nav>
 
 <blockquote class="blockquote text-center">
-    <h2 class="mb-0">Il faut se connecter avant </h2>
+    <p class="mb-0">Il faut se connecter avant </p>
     <footer class="blockquote-footer">Redirection en cours</footer>
 </blockquote>
 </body>

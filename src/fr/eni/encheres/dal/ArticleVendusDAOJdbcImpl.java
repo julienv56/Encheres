@@ -16,7 +16,7 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "FROM ARTICLES_VENDUS a " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
-            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23)";
+            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) ";
 
     private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, " +
             "prix_initial, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?)";
@@ -34,9 +34,6 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "FROM ARTICLES_VENDUS a " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie ";
-//            +
-//            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
-//            "AND a.no_categorie = ?";
 
     private static final String SELECT_BY_ID = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +
             "prix_initial, prix_vente, a.no_utilisateur as a_no_utilisateur, a.no_categorie as a_no_categorie, pseudo, c.libelle as c_libelle " +
@@ -109,20 +106,6 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
 
     @Override
     public void insert(ArticlesVendus article) {
-/*      ArticlesVendus article = new ArticlesVendus();
-        Utilisateurs user = new Utilisateurs();
-        Categories categorie = new Categories();
-        article.setNomArticle(nom_article);
-        article.setDescription(description);
-        article.setDateDebutEncheres(date_debut_encheres);
-        article.setDateFinEncheres(date_fin_encheres);
-        article.setMiseAPrix(prix_initial);
-        user.setNo_utilisateur(no_utilisateur);
-        categorie.setNo_categorie(no_categorie);
-        article.setUtilisateur(user);
-        article.setCategorie(categorie);
-        this.articlesVendusDAO.insert(article);
-        return article;*/
         try (Connection cnx = ConnectionProvider.getConnection()) {
             PreparedStatement pstmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, article.getNomArticle());

@@ -24,7 +24,6 @@ public class ServletLogin extends HttpServlet {
         Utilisateurs users = new Utilisateurs();
         String pseudo = request.getParameter("pseudo");
         String mdp = request.getParameter("MotDePasse");
-        String remind = request.getParameter("remind");
         users = usersManager.selectionnerTousLesUtilisateurs(pseudo, mdp);
         String bddPseudo = users.getPseudo();
         if (bddPseudo == null) {

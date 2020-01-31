@@ -19,8 +19,7 @@ public class ServletTriCategory extends ServletListCategorie {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
-        rd.forward(req, resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class ServletTriCategory extends ServletListCategorie {
 
             ArrayList<ArticlesVendus> lesArticles = new ArrayList<>();
             ArticlesVendusManager articleManager = new ArticlesVendusManager();
-            lesArticles = (ArrayList<ArticlesVendus>) articleManager.listerParCategorie(categorySelected);
+            lesArticles = (ArrayList<ArticlesVendus>) articleManager.listerParCategorie(no_categorie);
 
             req.setAttribute("lstArticles", lesArticles);
 

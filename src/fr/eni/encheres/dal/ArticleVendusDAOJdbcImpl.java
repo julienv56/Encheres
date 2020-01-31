@@ -27,7 +27,7 @@ public class ArticleVendusDAOJdbcImpl implements ArticlesVendusDAO {
             "FROM ARTICLES_VENDUS a " +
             "JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur " +
             "JOIN CATEGORIES c ON c.no_categorie = a.no_categorie " +
-            "WHERE date_debut_encheres = CONVERT(varchar, getdate(), 23) " +
+            "WHERE CONVERT(varchar, getdate(), 23) BETWEEN date_debut_encheres AND date_fin_encheres " +
             "AND a.no_categorie = ?";
 
     private static final String LISTER_BY_ACHATS = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, " +

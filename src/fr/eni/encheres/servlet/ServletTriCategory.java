@@ -19,7 +19,8 @@ public class ServletTriCategory extends ServletListCategorie {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Todo
+        RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+        rd.forward(req, resp);
     }
 
     @Override

@@ -46,7 +46,7 @@ public class ServletTriAchats extends HttpServlet {
             e.getMessage();
         }
         System.out.println(achatsSelected);
-        RequestDispatcher rd = req.getRequestDispatcher("test.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("enCoursDeDev.html");
         rd.forward(req, resp);
     }
 }

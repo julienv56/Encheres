@@ -8,6 +8,7 @@ import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +28,13 @@ public class ServletEncheres extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            RequestDispatcher rd = req.getRequestDispatcher("/connectToi.jsp");
+            rd.forward(req, resp);
+        } else {
+            doPost(req, resp);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,15 +52,18 @@ public class ServletEncheres extends HttpServlet {
             String mot_de_passe = ((Utilisateurs) session.getAttribute("user")).getMot_de_passe();
             int no_utilisateur = ((Utilisateurs) session.getAttribute("user")).getNo_utilisateur();
 
-            int prix = ((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente();
+            int meilleurOffre = ((Retrait) session.getAttribute("retrait")).getArticle().getPrixVente();
+            int miseAprix = ((Retrait) session.getAttribute("retrait")).getArticle().getMiseAPrix();
             String proposition = request.getParameter("proposition");
             int propositionInt = Integer.parseInt(proposition);
 
             if (oldCredit < propositionInt) {
                 request.setAttribute("error", "Vous n'avez pas assez de crédit");
-            } else if (oldCredit < prix) {
+            } else if (oldCredit < meilleurOffre) {
                 request.setAttribute("error", "Fond insuffisant");
-            } else if (propositionInt <= prix) {
+            } else if (propositionInt <= meilleurOffre) {
+                request.setAttribute("error", "Proposition insuffisante la meilleure offre est de : " + meilleurOffre);
+            } else if (propositionInt < miseAprix) {
                 request.setAttribute("error", "Proposition insuffisante");
             } else {
                 int credit = (oldCredit - propositionInt);
@@ -82,6 +92,8 @@ public class ServletEncheres extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("ServletDetailArticle");
+        // response.sendRedirect("ServletDetailArticle");
+        RequestDispatcher rd = request.getRequestDispatcher("userConnect/enchereArticle.jsp");
+        rd.forward(request, response);
     }
 }

@@ -18,7 +18,7 @@
         }
 
         body {
-            background: #3F485B;
+            background-color: #eee;
             display: flex;
             align-items: center;
             height: 90%;

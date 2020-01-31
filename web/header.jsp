@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse st navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index: 100000 !important;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="/Encheres/" class="navbar-left"><img src="https://image.flaticon.com/icons/svg/345/345629.svg"

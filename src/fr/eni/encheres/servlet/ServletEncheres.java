@@ -8,7 +8,6 @@ import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,8 +82,6 @@ public class ServletEncheres extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       // response.sendRedirect("ServletDetailArticle");
-        RequestDispatcher rd = request.getRequestDispatcher("userConnect/enchereArticle.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("ServletDetailArticle");
     }
 }

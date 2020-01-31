@@ -7,8 +7,7 @@
         <welcome-file>categorie</welcome-file>
         <welcome-file>listeArticles</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>JSP_Dans_WEB_INF</servlet-name>
-        <jsp-file>/WEB-INF/modules/module3/demonstrations/premiereJSPDansWebInf.jsp</jsp-file>
-    </servlet>
+    <error-page>
+        <location>/WEB-INF/404.html</location>
+    </error-page>
 </web-app>

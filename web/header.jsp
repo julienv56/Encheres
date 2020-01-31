@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse st ">
+<nav class="navbar navbar-inverse st navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="/Encheres/" class="navbar-left"><img src="https://image.flaticon.com/icons/svg/345/345629.svg"

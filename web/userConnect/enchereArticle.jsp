@@ -159,7 +159,12 @@
                         </dd>
                     </dl>  <!-- item-property .// -->
                     <button type="submit" class="btn btn-lg btn-primary text-uppercase">Enchérir</button>
+                    <% if (request.getAttribute("error") != null) {%>
+                    <div class="error"><script> alert("<%=request.getAttribute("error")%>");
+                    </script></div>
+                    <%}%>
                 </form>
+
             </article> <!-- card-body.// -->
         </aside> <!-- col.// -->
     </div>

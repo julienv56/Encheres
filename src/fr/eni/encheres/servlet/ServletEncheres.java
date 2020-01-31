@@ -8,6 +8,7 @@ import fr.eni.encheres.bo.Encheres;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateurs;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,11 +51,11 @@ public class ServletEncheres extends HttpServlet {
             int propositionInt = Integer.parseInt(proposition);
 
             if (oldCredit < propositionInt) {
-                System.out.println("Credit inférieur à la proposition");
+                request.setAttribute("error", "Vous n'avez pas assez de crédit");
             } else if (oldCredit < prix) {
-                System.out.println("Fond insuffisant");
+                request.setAttribute("error", "Fond insuffisant");
             } else if (propositionInt <= prix) {
-                System.out.println("Proposition insuffisante");
+                request.setAttribute("error", "Proposition insuffisante");
             } else {
                 int credit = (oldCredit - propositionInt);
                 UtilisateursManager usersManager = new UtilisateursManager();
@@ -82,6 +83,8 @@ public class ServletEncheres extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("ServletDetailArticle");
+       // response.sendRedirect("ServletDetailArticle");
+        RequestDispatcher rd = request.getRequestDispatcher("userConnect/enchereArticle.jsp");
+        rd.forward(request, response);
     }
 }

@@ -69,6 +69,7 @@
                 </div>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
+                    <!--Modal d'inscription -->
                 <li><a data-toggle="modal" data-target="#myModalRegister"><span
                         class="glyphicon glyphicon-log-in"></span>
                     S'inscrire</a></li>
@@ -94,43 +95,42 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Pseudo"
-                                                               name="pseudo"/>
+                                                               name="pseudo" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Prenom"
-                                                               name="prenom"/>
+                                                               name="prenom" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Nom"
-                                                               name="nom"/>
+                                                               name="nom" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Email"
-                                                               name="email"/>
+                                                               name="email" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Telephone"
-                                                               name="telephone"/>
+                                                               name="telephone"required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Rue"
-                                                               name="rue"/>
+                                                               name="rue" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control"
-                                                               placeholder="Code postal" name="codePostal"/>
+                                                               placeholder="Code postal" name="codePostal" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" placeholder="Ville"
-                                                               name="ville"/>
+                                                               name="ville" required/>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="password" class="form-control"
-                                                               placeholder="Mot de passe" name="MotDePasse"/>
+                                                               placeholder="Mot de passe" name="MotDePasse" required/>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

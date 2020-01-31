@@ -1,12 +1,12 @@
 function FiltreParNom() {
-    var input, filter, ul, li, h4, i, txtValue;
+    var input, filter, ul, li, h3, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     ul = document.getElementById("myUL");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
-        h4 = li[i].getElementsByTagName("h4")[0];
-        txtValue = h4.textContent || h4.innerText;
+        h3 = li[i].getElementsByTagName("h3")[0];
+        txtValue = h3.textContent || h3.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";
         } else {

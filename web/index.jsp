@@ -78,15 +78,15 @@
         </div>
         <ul id="myUL" style="display: inline-block;">
             <c:forEach items="${lstArticles}" var="article">
-                <li style="display: block;float:left;margin-right: 10px;list-style: none;">
-                    <img class="card-img-top" src="https://dummyimage.com/200x200/55595c/fff"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">${article.getNomArticle()}</h4>
+                <li style="display: block;float:left;margin-right: 50px;list-style: none;">
+                    <img class="card-img-top" src="https://www.indexel-datascience.com/wp-content/uploads/2019/12/giphy-4.gif"
+                         alt="Card image cap" height="200" width="300">
+                    <div class="card-body" style="width: 300px">
+                        <h3 class="card-title" style="text-align: -moz-center;">${article.getNomArticle()}</h3>
                         <p>${article.getUtilisateur().pseudo}</p>
                         <form action="<%=request.getContextPath()%>/ServletDetailArticle" method="post">
                             <div class="row" style="margin-right: 50px">
-                                <div class="col" style="width: 300px">
+                                <div class="col" style="width: 300px; margin-left:15px">
 
                                     <button type="submit" <c:if
                                             test="${empty sessionScope.user}"> data-toggle="tooltip" title="Veuillez-vous connecter " disabled </c:if>

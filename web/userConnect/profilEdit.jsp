@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../entete.jsp"%>
+<%@include file="../header.jsp"%>
 <form action="<%=request.getContextPath()%>/edit" method="post">
     <table id="table1" class="table">
         <tbody>

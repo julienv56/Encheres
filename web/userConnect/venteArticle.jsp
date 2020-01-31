@@ -7,7 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../entete.jsp"%>
+<%@include file="../header.jsp"%>
 <div class="jumbotron">
     <div class="container text-center">
         <h3>Nouvelle Vente Enchère</h3>

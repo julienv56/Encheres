@@ -160,6 +160,12 @@
                                     <input name="pseudo" class="form-control" placeholder="pseudo" type="text">
                                     <input name="MotDePasse" class="form-control" placeholder="******"
                                            type="password">
+
+                                    <div style="text-align: right" class="btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-success active">
+                                            <input name="remind" type="checkbox" checked autocomplete="off"> Se souvenir de moi
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">

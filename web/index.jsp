@@ -90,7 +90,7 @@
 
                                     <button type="submit" <c:if
                                             test="${empty sessionScope.user}"> data-toggle="tooltip" title="Veuillez-vous connecter " disabled </c:if>
-                                            class="btn btn-danger btn-lg btn-block" name="noArticle"
+                                            class="btn btn-primary btn-lg btn-block" name="noArticle"
                                             value="${article.getNoArticle()}">${article.getMiseAPrix()}
                                         points
                                     </button>

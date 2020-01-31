@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta http-equiv="refresh" content="2;/Encheres"/>
+    <meta http-equiv="refresh" content="3;/Encheres"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script
@@ -10,67 +10,89 @@
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>login success</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+        html {
+            height: 90%;
+        }
+
+        body {
+            background: #3F485B;
+            display: flex;
+            align-items: center;
+            height: 90%;
+        }
+
+        .back {
+            margin: 1em auto;
+            font-family: "Roboto";
+        }
+
+        .back span {
+            font-size: 3em;
+            color: #F2C640;
+            background: #262B37;
+            display: table-cell;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3), 0 5px 0 #ccc;
+            padding: 0 15px;
+            line-height: 100px;
+            animation: jumb 2s infinite;
+        }
+
+        @keyframes jumb {
+            0% {
+                transform: translateY(0px)
+            }
+            50% {
+                transform: translateY(-30px);
+                box-shadow: 0 15px 0 rgb(242, 198, 64);
+            }
+            100% {
+                transform: translateY(0px)
+            }
+        }
+
+        .back span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .back span:nth-child(2) {
+            animation-delay: .1s;
+        }
+
+        .back span:nth-child(3) {
+            animation-delay: .2s;
+        }
+
+        .back span:nth-child(4) {
+            animation-delay: .3s;
+        }
+
+        .back span:nth-child(5) {
+            animation-delay: .4s;
+        }
+
+        .back span:nth-child(6) {
+            animation-delay: .5s;
+        }
+
+        .back span:nth-child(7) {
+            animation-delay: .6s;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#myNavbar">
-                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li><a href="/Encheres">ENI-Enchere</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.jsp"><span class="glyphicon glyphicon-log-in"></span>
-                    S'inscrire</a></li>
-                <li><a data-toggle="modal" data-target="#myModalCo"><span
-                        class="glyphicon glyphicon-log-out"></span> Se connecter</a></li>
-
-                <!-- Modal connexion -->
-                <div class="modal fade" id="myModalCo">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title">Connexion</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form action="<%=request.getContextPath()%>/login" method="post">
-                                <div class="modal-body">
-                                    <input name="pseudo" class="form-control" placeholder="pseudo" type="text">
-                                    <input name="MotDePasse" class="form-control" placeholder="******"
-                                           type="password">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">
-                                        Valider
-                                    </button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        Fermer
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </ul>
-        </div>
-    </div>
-</nav>
 <c:if test="${!empty sessionScope.user}">
-    <blockquote class="blockquote text-center">
-        <p class="mb-0">Vous êtes connecté(e) avec le pseudo :
-            <mark>${sessionScope.user.pseudo}</mark>
-        </p>
-        <footer class="blockquote-footer">Redirection en cours</footer>
-    </blockquote>
+    <span class="back">
+        <span>L</span>
+        <span>o</span>
+        <span>a</span>
+        <span>d</span>
+        <span>i</span>
+        <span>n</span>
+        <span>g</span>
+        </span>
 </c:if>
 <br>
 </body>

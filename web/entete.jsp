@@ -36,7 +36,8 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <c:if test="${!empty sessionScope.user}">
-                <li><a href="/Encheres/userConnect/profil.jsp"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                <li><a href="/Encheres/userConnect/profil.jsp"><span class="glyphicon glyphicon-user"></span> Mon profil</a>
+                </li>
                 <li><a data-toggle="modal" data-target="#myModalDeco"><span
                         class="glyphicon glyphicon-log-out"></span> Se deconnecter</a></li>
 
